@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="static/js/config.js"></script>
+    <script src="static/js/cookies.js"></script>
+    <script src="static/js/auth.js"></script>
+    <script src="static/js/navbar.js"></script>
+    <script src="static/js/profile.js"></script>
+    <script src="static/js/set-page-info.js"></script>
+    <script src="static/js/init.js"></script>
+  </head>
+
+  <body onload="init();">
+    <div class="container-fluid border border-secondary border-width-lg min-vh-100">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
+            <a class="navbar-brand mr-3" href="index.html">
+              <img class="mr-1 logo-isu" src="static/imgs/eID-logo.png">
+              <img class="logo-isu" src="static/imgs/ISU logo-s.png">
+            </a>
+              <ul class="nav nav-tabs w-100 mr-3">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/eid.html">身分證</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/issues.html">永續合作</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/foot_print.html">數位足跡</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/wallet.html">領取任務</a>
+                </li>
+              </ul>
+              <a class="navbar-brand mr-0" href="/backend/edit-info.html">
+                <img style="width: 45px"src="static/imgs/user-edit-solid.svg">
+              </a>
+          </nav>
+          <div class="container">
+              <div class="row mt-2 align-items-center">
+                <div class="col-6">
+                  <p class="mb-0">數位居民身份證</p>
+                  <p>The eID card for digital townie</p>
+                  <div id="username" class="h3">
+                    <div id="userid" style="display: inline"> </div>
+                  </div>
+                  <p>
+                    累積時數 : <span id="balance">000</span>小時
+                  </p>
+                </div>
+                <div class="col-6">
+                  <div class="card">
+                    <div id="img_avatar" class="bg-contain" style="background-image: url(static/imgs/pages/user.png); height: 250px; background-repeat: no-repeat" ></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
