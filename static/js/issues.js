@@ -138,7 +138,8 @@ function set_task_in_page(obj) {
 
 function get_task_info(req_uuid_task, set_page = 1) {
   $.ajax({
-    url: HOST_URL_TPLANET_DAEMON + "/tasks/" + req_uuid_task,
+    // url: HOST_URL_TPLANET_DAEMON + "/tasks/" + req_uuid_task,
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/get/" + req_uuid_task,
     type: "GET",
     async: false,
     crossDomain: true,
