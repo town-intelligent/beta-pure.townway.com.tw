@@ -1,1 +1,1 @@
-google-chrome-stable --incognito https://pure.townway.com.tw
+google-chrome-stable --incognito https://beta-pure.townway.com.tw
