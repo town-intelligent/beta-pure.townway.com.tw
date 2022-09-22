@@ -31,6 +31,8 @@ submitBtn.addEventListener("click", async function () {
   form.append("description", JSON.stringify(obj_sed));;
 
   await setDescription(url, form);
+
+  alert("設定成功！");
 });
 
 async function setDescription(url, data) {

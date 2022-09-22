@@ -1,1 +1,1 @@
-git add . ; git commit -m "fix: add navbar on backend" ; git push
+git add . ; git commit -m "fix: alert" ; git push
