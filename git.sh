@@ -1,1 +1,1 @@
-git add . ; git commit --amend -m "fix set skill" ; git push -f
+git add . ; git commit --amend -m "fix: except on foot print page" ; git push -f

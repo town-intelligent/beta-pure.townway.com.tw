@@ -22,8 +22,6 @@ function reDrawChart(projectWeight) {
             throw error;
         }
 
-	  console.log("data = " + JSON.stringify(data));
-
     data = null;
 
     try {
@@ -77,6 +75,10 @@ function getProjectWeight(list_task_UUIDs) {
   var projectWeight = {};
   var dataJSON = {};
   dataJSON.uuid = list_task_UUIDs[0];
+
+  if (dataJSON.uuid == undefined){
+    return;
+  }
 
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/weight",
