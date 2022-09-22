@@ -20,21 +20,6 @@ $.ajax(settings).done(async function (res) {
 
 function getGroup(data){
   const Dropdown = document.getElementById('dropdown');
-  /* if(data.group === '300'){
-    Dropdown.innerHTML = dropdown();
-  }else if(data.group === '201'){
-    Dropdown.innerHTML=`
-    ${dropdown()}
-    <a class="dropdown-item d-flex align-items-center" href="/verifier-cms-list.html">
-      <img src="/static/imgs/cooperate.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
-      <span class="pl-2">永續合作</span>
-    </a>
-    <a class="dropdown-item d-flex align-items-center" href="/verifier-cms-executor-section.html">
-      <img src="/static/imgs/groups.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
-      <span class="pl-2">志工專區</span>
-    </a>
-    `
-  } */
   
   if(data.group === '202'){
     Dropdown.innerHTML=`
