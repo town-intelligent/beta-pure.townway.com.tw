@@ -23,7 +23,15 @@ function reDrawChart(projectWeight) {
         }
 
 	  console.log("data = " + JSON.stringify(data));
-	  data = JSON.parse(getLocalStorage("project_weight"));
+
+    data = null;
+
+    try {
+	    data = JSON.parse(getLocalStorage("project_weight"));
+    } catch (e) {
+      console.log(e);
+      return;
+    }
 
     xScale.domain(data.map(function(d) { return d.month; }));
     yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
