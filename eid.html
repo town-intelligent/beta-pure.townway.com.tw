@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,46 +14,52 @@
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="static/css/style.css" rel="stylesheet" type="text/css">
-    <script src="static/js/config.js"></script>
-    <script src="static/js/cookies.js"></script>
-    <script src="static/js/auth.js"></script>
-    <script src="static/js/navbar.js"></script>
-    <script src="static/js/profile.js"></script>
-    <script src="static/js/set-page-info.js"></script>
-    <script src="static/js/init.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/profile.js"></script>
+    <script src="/static/js/set-page-info.js"></script>
+    <script src="/static/js/init.js"></script>
+    <script src="/static/js/getGroup.js"></script>
   </head>
-
   <body onload="init();">
     <div class="container-fluid border border-secondary border-width-lg min-vh-100">
       <div class="row">
         <div class="col">
           <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
-            <a class="navbar-brand mr-3" href="index.html">
-              <img class="mr-1 logo-isu" src="static/imgs/eID-logo.png">
-              <img class="logo-isu" src="static/imgs/ISU logo-s.png">
+            <a class="navbar-brand mr-sm-3" href="index.html">
+              <img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png">
+              <img class="logo-isu" src="/static/imgs/ISU logo-s.png">
             </a>
-              <ul class="nav nav-tabs w-100 mr-3">
+            <a class="navbar-brand mr-0 ml-auto d-sm-none" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
+            </a>
+              <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
                 <li class="nav-item">
-                  <a class="nav-link active" href="/eid.html">身分證</a>
+                  <a class="nav-link active px-2 px-sm-3" href="/eid.html">身分證</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/issues.html">永續合作</a>
+                  <a class="nav-link px-2 px-sm-3" href="/issues.html">永續合作</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/foot_print.html">數位足跡</a>
+                  <a class="nav-link px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/wallet.html">領取任務</a>
+                  <a class="nav-link px-2 px-sm-3" href="/wallet.html">領取任務</a>
                 </li>
               </ul>
-              <a class="navbar-brand mr-0" href="/backend/edit-info.html">
-                <img style="width: 45px"src="static/imgs/user-edit-solid.svg">
+              <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
               </a>
+              <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+              </div>
           </nav>
           <div class="container">
-              <div class="row mt-2 align-items-center">
-                <div class="col-6">
+              <div class="row mt-2 align-items-center justify-content-center justify-content-sm-start">
+                <div class="col-10 col-sm-6 order-2 order-sm-1 mt-4 mt-sm-0">
                   <p class="mb-0">數位居民身份證</p>
                   <p>The eID card for digital townie</p>
                   <div id="username" class="h3">
@@ -60,9 +69,9 @@
                     累積時數 : <span id="balance">000</span>小時
                   </p>
                 </div>
-                <div class="col-6">
+                <div class="col-10 col-sm-6 order-1 order-sm-2">
                   <div class="card">
-                    <div id="img_avatar" class="bg-contain" style="background-image: url(static/imgs/pages/user.png); height: 250px; background-repeat: no-repeat" ></div>
+                    <div id="img_avatar" class="bg-contain" style="background-image: url(/static/imgs/pages/user.png); height: 250px; background-repeat: no-repeat" ></div>
                   </div>
                 </div>
               </div>

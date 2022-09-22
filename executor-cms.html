@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/localStorage.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/navbar.js"></script>
+  <script src="/static/js/profile.js"></script>
+  <script src="/static/js/token.js"></script>
+  <script src="/static/js/set-page-info.js"></script>
+  <script src="/static/js/init.js"></script>
+  <script src="/static/js/getGroup.js"></script>
+  
+  <script>
+    // http://jsfiddle.net/DerekL/3wRpA/
+    // https://stackoverflow.com/questions/53651409/writing-a-base64-string-to-file-in-python-not-working
+    // https://stackoverflow.com/questions/34116682/save-base64-image-python
+    /*The FileModal Class*/
+    function FileModal(accept){
+      var callback = function(){};
+      return {
+        show: function(){
+          $("<input>").attr({
+            type: "file",
+            accept: accept
+          }).appendTo("body").hide().change(function(e){
+            var file = e.target.files[0],
+            reader = new FileReader();
+            reader.onload = function(progress){
+              callback(progress.target.result);
+            };
+            reader.readAsDataURL(file);
+          }).click();
+        },
+        set onload(c){ callback = c; }
+      }
+    }
+
+    // --- --- ---
+
+    function uploadAvatarImg(base64Img) {
+      var dataJSON = {};
+      dataJSON.email = getLocalStorage("email");
+      dataJSON.img = base64Img;
+      $.ajax({
+        url: HOST_URL_EID_DAEMON + "/accounts/modify",
+        type: "POST",
+        async: false,
+        crossDomain: true,
+        data:  dataJSON,
+        success: function(returnData) {
+          const obj = JSON.parse(returnData);
+          if (obj.result) {
+            console.log("OK");
+          } else {
+            console.log("False");
+          }
+          window.location.replace("/eid.html");
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          console.log(thrownError);
+        }
+      });
+    }
+
+    // --- --- ---
+
+    function changeAvatarImg1() {
+      var file = new FileModal("image/png");
+      file.onload = function(d){
+        // Upload base64 image file
+        uploadAvatarImg(d);
+      };
+      file.show();
+    }
+    </script>
+    </head>
+    
+    <body onload="init();">
+    <div class="container-fluid border border-secondary border-width-lg min-vh-100">
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
+            <a class="navbar-brand mr-3" href="index.html">
+              <img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png">
+              <img class="logo-isu" src="/static/imgs/ISU logo-s.png">
+            </a>
+            <a class="navbar-brand mr-0 ml-auto" href="#" data-toggle="dropdown" href="#" role="button"
+              aria-expanded="false">
+              <img style="width: 45px" src="/static/imgs/user-edit-solid.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+            </div>
+          </nav>
+        <div class="container-fluid px-0">
+          <!-- <form> -->
+          <div class="row mt-4">
+            <div class="col-sm-6">
+              <div class="border d-flex align-items-center justify-content-center h-100">
+                <img src="/static/imgs/person_icon.svg" height="265" alt="">
+                <a href="javascript: changeAvatarImg1();" class="stretched-link"></a>
+                <!-- <button id="btn_avatar_img" onclick="changeAvatarImg1()"><div id="avatar_img" class="bg-contain" style="background-image: url(/static/imgs/person_icon.svg); height: 265; background-repeat: no-repeat" ></div></button> -->
+              </div>
+            </div>
+            <div class="col-sm-6 mt-4 mt-sm-0">
+              <p>使用者名稱</p>
+              <div class="d-flex">
+                <input id="username" type="text" class="form-control" placeholder="請輸入使用者名稱">
+                <button class="btn btn-primary text-nowrap ml-2" onclick="edit_username()">確認</button>
+              </div>
+              <p class="mt-3">電子郵件</p>
+              <p id="email" class="mb-0"></p>
+              <p class="mt-3">密碼</p>
+              <div class="d-flex">
+                <p class="mb-0">********</p>
+                <!-- <button class="btn btn-primary text-nowrap ml-2">編輯</button> -->
+                <a href="/backend/change-pw.html" class="btn btn-primary text-nowrap ml-2">編輯</a>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 justify-content-center">
+            <div class="col-sm-6">
+              <p>身分識別</p>
+              <p class="mb-0" id="group">A.志工</p>
+            </div>
+            <div class="col-sm-6 mt-4 mt-sm-0">
+              <p>時數</p>
+              <div class="d-flex align-items-center">
+                <span id="balance">000</span>
+                <span class="ml-2 text-nowrap">小時</span>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 align-items-center justify-content-center">
+            <div class="col">
+              <p>專長</p>
+              <div class="form-row">
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="行政支援" type="checkbox" id="gridCheck1">
+                    <label class="form-check-label pl-3" for="gridCheck1">
+                      1. 行政支援
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="課業輔導" type="checkbox" id="gridCheck2">
+                    <label class="form-check-label pl-3" for="gridCheck2">
+                      2. 課業輔導
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="社區服務" type="checkbox" id="gridCheck3">
+                    <label class="form-check-label pl-3" for="gridCheck3">
+                      3. 社區服務
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="生活扶助" type="checkbox" id="gridCheck4">
+                    <label class="form-check-label pl-3" for="gridCheck4">
+                      4. 生活扶助
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="電腦科技" type="checkbox" id="gridCheck5">
+                    <label class="form-check-label pl-3" for="gridCheck5">
+                      5. 電腦科技
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="環保教育" type="checkbox" id="gridCheck6">
+                    <label class="form-check-label pl-3" for="gridCheck6">
+                      6. 環保教育
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="藝術文化" type="checkbox" id="gridCheck7">
+                    <label class="form-check-label pl-3" for="gridCheck7">
+                      7. 藝術文化
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="健康醫療" type="checkbox" id="gridCheck8">
+                    <label class="form-check-label pl-3" for="gridCheck8">
+                      8. 健康醫療
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="權益倡導" type="checkbox" id="gridCheck9">
+                    <label class="form-check-label pl-3" for="gridCheck9">
+                      9. 權益倡導
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" value="國際交流" type="checkbox" id="gridCheck10">
+                    <label class="form-check-label pl-3" for="gridCheck10">
+                      10. 國際交流
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3">
+                  <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input checkbox-1x skillCheck" type="checkbox" id="otherCheck"
+                      onclick="checkBoxFn()">
+                    <label class="form-check-label pl-3" for="otherCheck">
+                      11. 其他
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <textarea class="form-control" id="textArea" rows="6" style="display: none;"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-4 justify-content-center">
+            <div class="col-sm-8">
+              <div class="d-flex justify-content-center">
+                <!-- <button type="submit" class="btn btn-primary d-none d-sm-block" style="width: 15%"
+                  id="submitBtn">儲存</button> -->
+                <button type="submit" class="btn btn-primary w-25" id="submitBtn">儲存</button>
+              </div>
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+      </section>
+    </div>
+    <script src="/static/js/set-description.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+
+</html>

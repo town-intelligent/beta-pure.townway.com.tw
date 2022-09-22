@@ -11,14 +11,15 @@
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
-    <script src="../static/js/config.js"></script>
-    <script src="../static/js/cookies.js"></script>
-    <script src="../static/js/auth.js"></script>
-    <script src="../static/js/navbar.js"></script>
-    <script src="../static/js/profile.js"></script>
-    <script src="../static/js/set-page-info.js"></script>
-    <script src="../static/js/init.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/profile.js"></script>
+    <script src="/static/js/set-page-info.js"></script>
+    <script src="/static/js/init.js"></script>
+    <script src="/static/js/getGroup.js"></script>
     <script>
       // http://jsfiddle.net/DerekL/3wRpA/
       // https://stackoverflow.com/questions/53651409/writing-a-base64-string-to-file-in-python-not-working
@@ -48,7 +49,7 @@
 
       function uploadAvatarImg(base64Img) {
         var dataJSON = {};
-	dataJSON.email = getCookie("email");
+	dataJSON.email = getLocalStorage("email");
         dataJSON.img = base64Img;
         $.ajax({
           url: HOST_URL_EID_DAEMON + "/accounts/modify",
@@ -90,12 +91,14 @@
         <div class="col">
           <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
             <a class="navbar-brand mr-3" href="../index.html">
-              <img class="mr-1 logo-isu" src="../static/imgs/eID-logo.png">
-                <img class="logo-isu" src="../static/imgs/ISU logo-s.png">
+              <img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png">
+                <img class="logo-isu" src="/static/imgs/ISU logo-s.png">
             </a>
-              <a class="navbar-brand mr-0 ml-auto" href="/backend/edit-info.html">
-                <img style="width: 45px"src="../static/imgs/user-edit-solid.svg">
-	      </a>
+            <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+            </div>
           </nav>
           <div class="container">
               <div class="row mt-5 align-items-center">
@@ -127,12 +130,12 @@
                     </div>
                   </div>
                   <div>
-                    <a class="btn btn-light btn-block" onclick="logout()"><img src="../static/imgs/outline_logout_black_24dp.png" class="pb-1 mr-2">登出</a>
+                    <a class="btn btn-light btn-block" onclick="logout()"><img src="/static/imgs/outline_logout_black_24dp.png" class="pb-1 mr-2">登出</a>
                   </div>
                 </div>
                 <div class="col-5">
                   <div class="card">
-	            <button id="btn_avatar_img" onclick="changeAvatarImg1()"><div id="avatar_img" class="bg-contain" style="background-image: url(../static/imgs/pages/user.png); height: 170px; background-repeat: no-repeat" ></div></button>
+	            <button id="btn_avatar_img" onclick="changeAvatarImg1()"><div id="avatar_img" class="bg-contain" style="background-image: url(/static/imgs/pages/user.png); height: 170px; background-repeat: no-repeat" ></div></button>
                   </div>
                 </div>
               </div>

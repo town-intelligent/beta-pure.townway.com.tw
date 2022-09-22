@@ -17,45 +17,52 @@
     <script src="/static/js/navbar.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/set-page-info.js"></script>
-    <script src="/static/js/getGroup.js"></script>
     <script src="/static/js/init.js"></script>
+    <script src="/static/js/getGroup.js"></script>
   </head>
 
   <body onload="init();">
-    <div class="container-fluid min-vh-100"> <!--border border-secondary border-width-lg-->
+    <div class="container-fluid border border-secondary border-width-lg min-vh-100">
       <div class="row">
         <div class="col">
           <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-start align-items-sm-center px-0">
-            <a class="navbar-brand mr-sm-3" href="index.html"><img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png"> <img class="logo-isu" src="/static/imgs/ISU%20logo-s.png"></a> <a aria-expanded="false" class="navbar-brand mr-0 ml-auto d-sm-none" data-toggle="dropdown" href="#" role="button"><img src="/static/imgs/user-edit-solid.svg" style="width: 45px"></a>
-            <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
-              <li class="nav-item">
-                <a class="nav-link px-2 px-sm-3" href="/eid.html">身分證</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-2 px-sm-3" href="/issues.html">永續合作</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link px-2 active px-sm-3" href="/wallet.html">領取任務</a>
-              </li>
-            </ul>
-            <a aria-expanded="false" class="navbar-brand mr-0 ml-auto d-none d-sm-block" data-toggle="dropdown" href="#" role="button"><img src="/static/imgs/user-edit-solid.svg" style="width: 45px"></a>
-            <div class="dropdown-menu dropdown-menu-right" id="dropdown">
-            </div>
+            <a class="navbar-brand mr-sm-3" href="index.html">
+              <img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png">
+              <img class="logo-isu" src="/static/imgs/ISU logo-s.png">
+            </a>
+            <a class="navbar-brand mr-0 ml-auto d-sm-none" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
+            </a>
+              <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/eid.html">身分證</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/issues.html">永續合作</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active px-2 px-sm-3" href="/wallet.html">領取任務</a>
+                </li>
+              </ul>
+              <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" id="dropdown">
+              </div>
           </nav>
-          <!-- <div class="container"> -->
-            <div class="container-fluid border border-secondary border-width-lg min-vh-100">
+          <div class="container">
             <div class="row justify-content-center mt-4 pt-3">
-              <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                <div class="text-center">
+              <div class="col-sm-7 mt-3 mt-sm-0 text-center">
+                <div class="d-flex h-100 align-items-sm-center justify-content-center">
 		              <script src="/static/html5-qrcode/dist/html5-qrcode.min.js"></script>
-                  <script src="/static/js/qrcode.js"></script>
-                  <div id="qr-reader" style="width: 300px"></div>
+                  <script src="/static/js/qrcode-handler.js"></script>
+                  <div id="qr-reader" style="width:250px"></div>
                 </div>
               </div>
-              <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+              <div class="col-sm-5">
                 <div class="text-center">
                   <img src="/static/imgs/qrcode.png" alt="">
                 </div>

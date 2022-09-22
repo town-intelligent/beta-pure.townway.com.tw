@@ -6,8 +6,8 @@ function reDrawChart(projectWeight) {
 
     svg.append("text")
        .attr("transform", "translate(100,0)")
-       .attr("x", 50)
-       .attr("y", 50)
+       .attr("x", 3)
+       .attr("y", 30)
        .attr("font-size", "24px")
        .text("年度志工時數")
 
@@ -22,50 +22,47 @@ function reDrawChart(projectWeight) {
             throw error;
         }
 
-	console.log("data = " + JSON.stringify(data));
-	data = JSON.parse(getCookie("project_weight"));
+	  console.log("data = " + JSON.stringify(data));
+	  data = JSON.parse(getLocalStorage("project_weight"));
 
-        xScale.domain(data.map(function(d) { return d.month; }));
-        yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
+    xScale.domain(data.map(function(d) { return d.month; }));
+    yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-        g.append("g")
-         .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale))
-         .append("text")
-         .attr("y", height - 250)
-         .attr("x", width - 100)
-         .attr("text-anchor", "end")
-         .attr("stroke", "blue")
-         .text("月份");
+    g.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(xScale))
+      .append("text")
+      .attr("y", height - 250)
+      .attr("x", width - 100)
+      .attr("text-anchor", "end")
+      .attr("stroke", "blue")
+      .text("月份");
 
-        g.append("g")
-         .call(d3.axisLeft(yScale).tickFormat(function(d){
-             return d;
-         })
-         .ticks(10))
-         .append("text")
-         .attr("transform", "rotate(-90)")
-         .attr("y", 6)
-         .attr("dy", "-5.1em")
-         .attr("text-anchor", "end")
-         .attr("stroke", "green")
-         .text("時數");
+    g.append("g")
+      .call(d3.axisLeft(yScale).tickFormat(function(d){
+          return d;
+      })
+      .ticks(10))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "-5.1em")
+      .attr("text-anchor", "end")
+      .attr("stroke", "green")
+      .text("時數");
 
-        g.selectAll(".bar")
-         .data(data)
-         .enter().append("rect")
-         .attr("class", "bar")
-         .attr("x", function(d) { return xScale(d.month); })
-         .attr("y", function(d) { return yScale(d.value); })
-         .attr("width", xScale.bandwidth())
-         .attr("height", function(d) { 
-		 console.log("hello, height = " + height);
-		 console.log("hello, d.value = " + d.value);
-		 console.log("hello, yScale(d.value) = " + yScale(d.value));
-
-		 return height - yScale(d.value); 
-	 });
-    });
+    g.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return xScale(d.month); })
+      .attr("y", function(d) { return yScale(d.value); })
+      .attr("width", xScale.bandwidth())
+      .attr("height", function(d) { 
+       
+		return height - yScale(d.value); 
+	});
+});
 }
 
 function getProjectWeight(list_task_UUIDs) {
@@ -81,8 +78,8 @@ function getProjectWeight(list_task_UUIDs) {
     data: dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set project weight to cookie
-       setCookie("project_weight", returnData, 1);
+       // Set project weight to localStorage
+       setLocalStorage("project_weight", returnData);
        projectWeight = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
@@ -98,10 +95,12 @@ function updateTalbeData(list_task_UUIDs) {
   var tbodyRef = document.getElementById("table_summary").getElementsByTagName("tbody")[0];
   for (var index = 0; index < list_task_UUIDs.length; index ++) {
     // Get task info
-    if (getCookie(list_task_UUIDs[index]) === "") {
-      get_task_info(list_task_UUIDs[index], 0);
+    var obj = null;
+    if (getLocalStorage(list_task_UUIDs[index]) === "") {
+      obj = get_task_info(list_task_UUIDs[index], 0);
+    } else {
+      obj = JSON.parse(getLocalStorage(list_task_UUIDs[index]));
     }
-    var obj = JSON.parse(getCookie(list_task_UUIDs[index]));
 
     // Insert a row at the end of table
     var newRow = tbodyRef.insertRow();
@@ -118,10 +117,10 @@ function updateTalbeData(list_task_UUIDs) {
 }
 
 function submitTaskTickets(task_UUID) {
-  if (getCookie(task_UUID)=== "") {
+  if (getLocalStorage(task_UUID)=== "") {
     return;
   }
-  obj = JSON.parse(getCookie(task_UUID));
+  obj = JSON.parse(getLocalStorage(task_UUID));
   var taskWeight = {};
   var dataJSON = {};
   dataJSON.uuid = obj.uuid;
@@ -135,8 +134,8 @@ function submitTaskTickets(task_UUID) {
     data: dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set project weight to cookie
-       setCookie("project_weight", returnData, 1);
+       // Set project weight to localStorage
+       setLocalStorage("project_weight", returnData);
        taskWeight = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
@@ -160,12 +159,12 @@ function detectNoNeedSubmitTask(list_task_UUIDs) {
 
 function updateNodeData() {
   // Get user tasks
-  var str_list_task_UUIDs = getCookie("list_tasks");
+  var str_list_task_UUIDs = getLocalStorage("list_tasks");
   var list_task_UUIDs  = [];
   if (str_list_task_UUIDs === "") {
     // Get user task UUIDs
-    list_task_UUIDs = list_tasks(getCookie("username"));
-    setCookie("list_tasks", list_task_UUIDs, 1);
+    list_task_UUIDs = list_tasks(getLocalStorage("username"));
+    setLocalStorage("list_tasks", list_task_UUIDs);
   } else {
     list_task_UUIDs = str_list_task_UUIDs.split(",");
   }
@@ -184,5 +183,6 @@ function updateNodeData() {
 
   // reDraw Chart
   var projectWeight = getProjectWeight(list_task_UUIDs);
+
   reDrawChart(projectWeight);
 }
