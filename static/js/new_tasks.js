@@ -2,7 +2,7 @@ const doneBtn = document.getElementById('doneBtn');
 doneBtn.addEventListener("click", function () {
   var form = new FormData();
   var uuid = "00000001";
-  var email = getLocalStorage("email");// "400@gmail.com";
+  var email = "admin" //getLocalStorage("email");
   var type = "1";
   var name = document.getElementById("task_name").value; // "test001";
   var overview = document.getElementById("overview").value;// "overview123";

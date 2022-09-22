@@ -8,13 +8,14 @@ function checkBoxFn() {
   }
 }
 let checkArray = [];
-
+/*
 $(".skillCheck").click(function () {
   let checkValue = $(this).val();
   
   checkArray.push(checkValue);
   console.log(checkArray);
 });
+*/
 // set_description
 const submitBtn = document.getElementById('submitBtn');
 submitBtn.addEventListener("click", async function () {
@@ -23,12 +24,28 @@ submitBtn.addEventListener("click", async function () {
   const url = `${HOST_URL_EID_DAEMON}/accounts/set_description`;
 
   form.append("email", userEmail);
-  
   var obj_sed = {};
+
+  // Update check array
+  var index_chk_box = 0;
+  while (true) {
+    if (document.getElementById("gridCheck" + (++index_chk_box).toString()) == null) {
+      break;
+    }
+    if (document.getElementById("gridCheck" + (index_chk_box).toString()).checked) {
+      checkArray.push(document.getElementById("gridCheck" + (index_chk_box).toString()).value);
+    }
+  }
   obj_sed.hhhhhhh = checkArray;
 
+  // Append others
+  if (document.getElementById("otherCheck") != null) {
+    checkArray.push("其他");
+    obj_sed.others = document.getElementById("textArea").value;
+  }
+
   // form.append("description", `{"hhhhhhh":[${checkArray}]}`);
-  form.append("description", JSON.stringify(obj_sed));;
+  form.append("description", JSON.stringify(obj_sed));
 
   await setDescription(url, form);
 

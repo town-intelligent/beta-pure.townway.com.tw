@@ -1,3 +1,26 @@
+function getBalance(mail) {
+  // Set balance
+  var dataJSON = {};
+  var result = 0;
+  dataJSON.email = mail;
+  dataJSON.ec = 0;
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/accounts/balance",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      result = returnData;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return result;
+}
+
 function get_username(email) {
   var resultJSON = {};
   var dataJSON = {};
@@ -18,14 +41,13 @@ function get_username(email) {
   });
 
   return resultJSON;
-
 }
 
 
 const form = new FormData();
 const userEmail = getLocalStorage('email');
 // const userEmail = "200@gmail.com";
-const userGroup = "202";
+const userGroup = "203";
 form.append("group", userGroup);
 form.append("email", userEmail);
 
@@ -53,8 +75,6 @@ $.ajax(settings).done(function (accountRes) {
 
   $.ajax(settings2).done(function (skillRes) {
     const skillObj = JSON.parse(skillRes);
-    
-    
     renderTable(accountObj, skillObj);
   });
 });
@@ -72,7 +92,6 @@ function renderTable(accountData, skillData) {
     };
   });
 
-  console.log("result", result);
   let tbodyContent = "";
   let tbody = document.getElementById("tbody");
   result.forEach(function (item){
@@ -80,12 +99,14 @@ function renderTable(accountData, skillData) {
     var onj_username = get_username(item.account);
 
     //let descriptionStr = item.description.replace(/\[|]/g,'');
+    var balance = getBalance(item.account)
+
     tbodyContent += `
     <tr>
       <td class="align-middle text-center">${onj_username.username}</td>
       <td class="align-middle text-center">${item.account}</td>
       <td class="align-middle text-center">${item.description}</td>
-      <td class="align-middle text-center">20</td>
+      <td class="align-middle text-center">${balance}</td>
     </tr>
     `
     tbody.innerHTML = tbodyContent;

@@ -48,3 +48,48 @@ function dropdown () {
     <span class="pl-2">數位身分證</span>
   </a>`
 }
+
+function get_account_group() {
+  var dataJSON = {};
+  var resultJSON = {};
+  dataJSON.email = getLocalStorage("email");
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/accounts/get_group",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}
+
+function set_account_group(group) {
+  var dataJSON = {};
+  var resultJSON = {};
+  dataJSON.email = getLocalStorage("email");
+  dataJSON.group = group;
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/accounts/set_group",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}

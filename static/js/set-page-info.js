@@ -38,6 +38,12 @@ function setPageInfo() {
   console.log( page );
 
   if (page == "eid.html") {
+
+    var group = get_account_group();
+
+    if (group.group != "202") {
+      set_account_group("203");
+    }
     setInfoEid();
   } else if (page.includes("issue")) {
     $("#nav-issues").addClass("active");
@@ -133,10 +139,15 @@ function setPageInfo() {
           document.getElementById("gridCheck10").checked = true;
         }
         if (list_skills[index_skill] == "其他") {
-          document.getElementById("gridCheck11").checked = true;
+          document.getElementById("otherCheck").checked = true;
+
+          try {
+            document.getElementById("textArea").style.display = "block";
+            document.getElementById("textArea").value = obj_des.description.others;
+          } catch (e) {}
+
         }
       }
-
     }
 
     /* console.log(JSON.stringify(obj_des));
