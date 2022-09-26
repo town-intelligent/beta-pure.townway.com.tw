@@ -64,6 +64,10 @@ html5QrCode.start(
   qrCodeMessage => {
     // do something when code is read. For example:
     // URL analysis
+    if (qrCodeMessage.includes("issue-verifier.html")){
+      window.location.replace("/issue-verifier.html");
+    }
+
     var method = analysis_url(qrCodeMessage);
     if (method === "tasks") {
       get_task(qrCodeMessage);

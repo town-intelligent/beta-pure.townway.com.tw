@@ -41,6 +41,7 @@ function get_username(email) {
   });
 
   return resultJSON;
+
 }
 
 
@@ -75,6 +76,8 @@ $.ajax(settings).done(function (accountRes) {
 
   $.ajax(settings2).done(function (skillRes) {
     const skillObj = JSON.parse(skillRes);
+    
+    
     renderTable(accountObj, skillObj);
   });
 });
@@ -92,6 +95,7 @@ function renderTable(accountData, skillData) {
     };
   });
 
+  console.log("result", result);
   let tbodyContent = "";
   let tbody = document.getElementById("tbody");
   result.forEach(function (item){
@@ -100,7 +104,6 @@ function renderTable(accountData, skillData) {
 
     //let descriptionStr = item.description.replace(/\[|]/g,'');
     var balance = getBalance(item.account)
-
     tbodyContent += `
     <tr>
       <td class="align-middle text-center">${onj_username.username}</td>

@@ -25,9 +25,9 @@ function FileModal(accept) {
 }
 
 function setImgToLS(ls_key) {
-  var file = new FileModal("image/png");
+  var file = new FileModal("image/*");
   file.onload = function(d) {
-    setLocalStorage(ls_key, d);
+    setLocalStorage("task_cover", d);
 
     if ( null != document.getElementById(ls_key)) {
       document.getElementById(ls_key).src = d;

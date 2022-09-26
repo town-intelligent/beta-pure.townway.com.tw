@@ -38,7 +38,6 @@ function setPageInfo() {
   console.log( page );
 
   if (page == "eid.html") {
-
     var group = get_account_group();
 
     if (group.group != "202") {
@@ -73,10 +72,10 @@ function setPageInfo() {
       var list_task_UUIDs  = [];
       if (str_list_task_UUIDs === "") {
         // Get user task UUIDs
-        list_task_UUIDs = list_tasks(getLocalStorage("username"));
+        list_task_UUIDs = list_verify_tasks("203", "1");
         setLocalStorage("list_tasks", JSON.stringify(list_task_UUIDs));
       } else {
-        list_task_UUIDs = str_list_task_UUIDs.split(",");
+        list_task_UUIDs = JSON.parse(str_list_task_UUIDs);
       }
 
       // Ready to verified tasks
@@ -145,9 +144,9 @@ function setPageInfo() {
             document.getElementById("textArea").style.display = "block";
             document.getElementById("textArea").value = obj_des.description.others;
           } catch (e) {}
-
         }
       }
+
     }
 
     /* console.log(JSON.stringify(obj_des));

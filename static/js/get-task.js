@@ -50,7 +50,7 @@ function renderTask(taskData){
   });
 
   qrcode_verifier.style = "width:100px; height:100px; margin-top:15px;";
-  qrcode_verifier.makeCode(HOST_URL_EID_DAEMON + "issue-verifier.html");
+  qrcode_verifier.makeCode(HOST_URL_EID_DAEMON + "/issue-verifier.html");
 
   document.getElementById("verifier_qrcode").append(obj_qrcode_verifier);
 }

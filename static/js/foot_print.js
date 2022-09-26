@@ -25,7 +25,7 @@ function reDrawChart(projectWeight) {
     data = null;
 
     try {
-	    data = JSON.parse(getLocalStorage("project_weight"));
+        data = JSON.parse(getLocalStorage("project_weight"));
     } catch (e) {
       console.log(e);
       return;
