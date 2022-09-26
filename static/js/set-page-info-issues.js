@@ -1,6 +1,6 @@
 const str_issue_block = `<div class="card">
   <div class="card-header bg-white p-0">
-    <a href="/verifier-cms-content.html?task=TASK_UUID" class="d-block">
+    <a href="/issue-executor.html?task=TASK_UUID" class="d-block">
       <div class="bg-cover" style="background-image: url(${HOST_URL_TPLANET_DAEMON}TASK_COVER); height: 150px; background-repeat: no-repeat" ></div>
     </a>
   </div>
