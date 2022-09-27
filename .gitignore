@@ -1,0 +1,5 @@
+*.swp
+*-backup
+config.js
+test.sh
+git.sh
