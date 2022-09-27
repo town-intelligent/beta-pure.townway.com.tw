@@ -1,1 +1,1 @@
-git add . ; git commit --amend -m "feat: issue executor" ; git push -f
+git add . ; git commit --amend -m "fix: issue verifier" ; git push  -f

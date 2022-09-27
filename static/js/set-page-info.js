@@ -203,11 +203,14 @@ function setPageInfo() {
         }
       });
     } else if (page == "verifier-cms-list.html") {
-      // alert("ok");
       var arr_tasks = list_plan_tasks("00000001", "1");
       set_page_info_verifier_cms_list(arr_tasks.tasks);
       console.log(arr_tasks);
     } else if (page == "verifier-cms-content.html") {
       set_page_info_verifier_cms_content();
+    } else if (page == "verified-tasks.html") {
+      var repos_verified_tasks = get_verified_tasks();
+      var list_verified_tasks = repos_verified_tasks.uuid;
+      addVerifiedTable(list_verified_tasks);
     }
 }

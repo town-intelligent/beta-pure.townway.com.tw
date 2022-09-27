@@ -430,3 +430,90 @@ function get_task_info(uuid) {
 
   return dataJSON;
 }
+
+function get_verified_tasks(){
+  var dataJSON = {};
+  var resultJSON = {};
+  dataJSON.username = getLocalStorage("username");
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/tasks/list_verified_tasks",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}
+
+function get_history_info(id_history){
+  var dataJSON = {};
+  var resultJSON = {};
+  dataJSON.id = id_history;
+  $.ajax({
+    url: HOST_URL_EID_DAEMON + "/accounts/get_history_info",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}
+
+function addVerifiedTable(list_uuid) {
+  // table_verify_tasks
+  var tbodyRef = document.getElementById("table_verified_tasks").getElementsByTagName("tbody")[0];
+
+  for (var index = 0; index < list_uuid.length; index ++) {
+
+    var response_history = get_history_info(list_uuid[index]);
+    var obj_history = response_history.history;
+    
+    var obj = get_task_info(obj_history.uuid_task);
+
+    // Insert a row at the end of table
+    var newRow = tbodyRef.insertRow();
+
+    // th: <th scope="row" class="text-center">
+    var newCell_th = newRow.insertCell();
+    var th = document.createElement("th");
+    th.className = "text-center";
+    newCell_th.appendChild(th);
+
+    // name
+    var newCell_username = newRow.insertCell();
+    var newText_username = document.createTextNode(obj.name);
+    newCell_username.appendChild(newText_username);
+    
+    // token
+    var newCell_email = newRow.insertCell();
+    var newText_email = document.createTextNode(obj.token);
+    newText_email.id = "email_" + index;
+    newCell_email.appendChild(newText_email);
+
+    // finish_date
+    var newCell_task_name = newRow.insertCell();
+    var newText_task_name = document.createTextNode(obj_history.finish_date);
+    newCell_task_name.appendChild(newText_task_name);
+
+    // verifier
+    var newCell_token = newRow.insertCell();
+    var newText_token = document.createTextNode(obj_history.verifier);
+    newCell_token.appendChild(newText_token);
+  }
+}
