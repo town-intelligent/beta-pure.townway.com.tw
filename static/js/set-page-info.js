@@ -55,15 +55,16 @@ function setPageInfo() {
       // Get task
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
-      var uuid = urlParams.get("uuid");
+      var uuid = urlParams.get("task");
 
       // Set Task
       setLocalStorage("target", uuid);
 
-      obj_task = JSON.parse(getLocalStorage(getLocalStorage("target")));
+      obj_task = get_task_info(uuid);//JSON.parse(getLocalStorage(getLocalStorage("target")));
 
       document.getElementById("task_name").innerHTML = obj_task.name;
       document.getElementById("task_balance").innerHTML = obj_task.token;
+      document.getElementById("overview").innerHTML = obj_task.overview;
       document.getElementById("task_summary").style.visibility = "hidden";
       
     } else if (page === "issue-verifier.html") {
