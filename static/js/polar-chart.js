@@ -1,5 +1,3 @@
-alert("s");
-
 var canvasP = document.getElementById("polar-chart");
 var ctxP = canvasP.getContext('2d');
 

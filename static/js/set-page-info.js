@@ -68,21 +68,17 @@ function setPageInfo() {
       document.getElementById("task_summary").style.visibility = "hidden";
       
     } else if (page === "issue-verifier.html") {
-      // Get all tasks and users
-      var str_list_task_UUIDs = getLocalStorage("list_tasks");
-      var list_task_UUIDs  = [];
-      if (str_list_task_UUIDs === "") {
-        // Get user task UUIDs
-        list_task_UUIDs = list_verify_tasks("203", "1");
-        setLocalStorage("list_tasks", JSON.stringify(list_task_UUIDs));
-      } else {
-        list_task_UUIDs = JSON.parse(str_list_task_UUIDs);
-      }
+
+      var list_task_UUIDs = list_verify_tasks("203", "1");
+
+      list_task_UUIDs = removeDuplicates(list_task_UUIDs);
 
       // Ready to verified tasks
+      var list_summary = [];
       for (var index = 0; index < list_task_UUIDs.length; index ++) {
-        updateVerifyTasksTable(list_task_UUIDs[index]);
+        list_summary = list_summary.concat(updateVerifyTasksTable(list_task_UUIDs[index]));
       }
+      addVrerifyTable(list_summary);
     }
   
   } else if (page == "foot_print.html") {

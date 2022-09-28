@@ -294,6 +294,8 @@ function addVrerifyTable(obj) {
   // table_verify_tasks
   var tbodyRef = document.getElementById("table_verify_tasks").getElementsByTagName("tbody")[0];
 
+  // alert(JSON.stringify(obj));
+ 
   for (var index = 0; index < obj.length; index ++) {
     // Insert a row at the end of table
     var newRow = tbodyRef.insertRow();
@@ -356,6 +358,7 @@ function addVrerifyTable(obj) {
 
 function updateVerifyTasksTable(uuid_task) {
   var dataJSON = {};
+  var resultJSON = {};
   dataJSON.uuid = uuid_task;
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/summary",
@@ -365,12 +368,13 @@ function updateVerifyTasksTable(uuid_task) {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       addVrerifyTable(obj);
+       resultJSON = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
     }
   });
+  return resultJSON;
 }
 
 function clickAll() {
@@ -516,4 +520,9 @@ function addVerifiedTable(list_uuid) {
     var newText_token = document.createTextNode(obj_history.verifier);
     newCell_token.appendChild(newText_token);
   }
+}
+
+function removeDuplicates(arr) {
+  return arr.filter((item,
+      index) => arr.indexOf(item) === index);
 }
