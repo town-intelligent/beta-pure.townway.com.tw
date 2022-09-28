@@ -53,8 +53,6 @@ function getGroup(data){
   }
 }
 
-// https://beta-pure.townway.com.tw/verified-tasks.html
-
 function dropdown () {
   return `<a class="dropdown-item d-flex align-items-center" href="/executor-cms.html">
     <img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
