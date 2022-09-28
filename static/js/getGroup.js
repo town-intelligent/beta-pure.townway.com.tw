@@ -65,6 +65,10 @@ function dropdown () {
   <a class="dropdown-item d-flex align-items-center" href="/verified-tasks.html">
     <img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
     <span class="pl-2">歷史紀錄</span>
+  </a>
+  <a class="dropdown-item d-flex align-items-center"onclick="logout()" href="#">
+    <img src="/static/imgs/eID.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+    <span class="pl-2">登出</span>
   </a>`
 }
 

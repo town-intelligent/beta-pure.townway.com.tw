@@ -135,22 +135,18 @@ function setPageInfo() {
           document.getElementById("gridCheck10").checked = true;
         }
         if (list_skills[index_skill] == "其他") {
-          document.getElementById("otherCheck").checked = true;
 
-          try {
+          if (obj_des.description.others == ""){
+            document.getElementById("otherCheck").checked = false;
+          } else {
+            document.getElementById("otherCheck").checked = true;
             document.getElementById("textArea").style.display = "block";
-            document.getElementById("textArea").value = obj_des.description.others;
-          } catch (e) {}
+            document.getElementById("textArea").value = obj_des.description.others;            
+          }
         }
       }
 
     }
-
-    /* console.log(JSON.stringify(obj_des));
-    console.log(JSON.stringify(obj_des.description));
-    console.log(obj_des.description.hhhhhhh[0]); */
-
-    // console.log(JSON.stringify(obj_skill));
 
   } else if (page == "wallet.html") {
     $("#nav-wallet").addClass("active");

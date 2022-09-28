@@ -379,12 +379,20 @@ function updateVerifyTasksTable(uuid_task) {
 
 function clickAll() {
   var index = 0;
+  var flag = true;
+
+  if (document.getElementById("checkbox_all").checked == true){
+    flag = true;
+  } else {
+    flag = false;
+  }
+
   while (true) {
     var checkbox = document.getElementById("checkbox_" + index);
     if (checkbox === null) {
       break;
     }
-    checkbox.checked = true;
+    checkbox.checked = flag;
 
     index = index + 1;
   }
