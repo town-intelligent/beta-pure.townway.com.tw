@@ -5,6 +5,7 @@ function checkBoxFn() {
     textArea.style.display = "block";
   } else {
     textArea.style.display = "none";
+    textArea.value = "";
   }
 }
 let checkArray = [];

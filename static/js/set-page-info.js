@@ -141,7 +141,7 @@ function setPageInfo() {
           } else {
             document.getElementById("otherCheck").checked = true;
             document.getElementById("textArea").style.display = "block";
-            document.getElementById("textArea").value = obj_des.description.others;            
+            document.getElementById("textArea").value = obj_des.description.others;
           }
         }
       }
