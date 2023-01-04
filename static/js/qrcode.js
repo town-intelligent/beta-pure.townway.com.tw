@@ -1,6 +1,6 @@
 function task_save(obj_task) {
   var dataJSON = {};
-  dataJSON.username = getLocalStorage("username");
+  dataJSON.email = getLocalStorage("email");
   dataJSON.uuid = obj_task.uuid;
 
   $.ajax({

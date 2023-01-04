@@ -166,10 +166,10 @@ function get_task_info(req_uuid_task, set_page = 1) {
   });
 }
 
-function get_user_uuid_tasks(username) {
+function get_user_uuid_tasks(email) {
   var list_issues = [];
   var dataJSON = {};
-  dataJSON.username = username;
+  dataJSON.email = email;
   dataJSON.task_type = "1";
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
@@ -206,8 +206,8 @@ function get_user_uuid_tasks(username) {
   });
 }
 
-function list_issues(username) {
-  get_user_uuid_tasks(username);
+function list_issues(email) {
+  get_user_uuid_tasks(email);
 }
 
 // ---- ISU
@@ -219,10 +219,10 @@ function finish_task() {
   document.getElementById("task_summary").style.visibility = "visible";
 }
 
-function list_tasks(username) {
+function list_tasks(email) {
   var list_issues = [];
   var dataJSON = {};
-  dataJSON.username = username;
+  dataJSON.email = email;
   dataJSON.task_type = "1";
   $.ajax({
     url: HOST_URL_EID_DAEMON + "/tasks/list",
@@ -264,8 +264,6 @@ function list_verify_tasks(group, task_type) {
   });
   return list_issues;
 }
-
-
 
 function addToVerify(length) {
   // Task UUID
@@ -382,7 +380,6 @@ function clickAll() {
 
     index = index + 1;
   }
-
   addToVerify(index);
 }
 
