@@ -39,5 +39,5 @@ function checkAuth() {
     // Verify token
     console.log("Verifing JWT ...");
     verifyToken(getLocalStorage("jwt"));
-  }--!>
+  }-->
 }
