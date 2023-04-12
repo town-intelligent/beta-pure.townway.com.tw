@@ -25,7 +25,7 @@ function verifyToken(token) {
 }
 
 function checkAuth() {
-  if (getLocalStorage("jwt") == "") {
+  <!--if (getLocalStorage("jwt") == "") {
     console.log("Null value of JWT");
     var path = window.location.pathname;
     var page = path.split("/").pop();
@@ -39,5 +39,5 @@ function checkAuth() {
     // Verify token
     console.log("Verifing JWT ...");
     verifyToken(getLocalStorage("jwt"));
-  }
+  }--!>
 }
