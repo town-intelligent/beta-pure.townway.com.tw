@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<link rel="stylesheet" href="static/css/choice.css" type="text/css">-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+	<script src="/static/js/config.js"></script>
+	<script src="/static/js/localStorage.js"></script>
+	<script src="/static/js/auth.js"></script>
+	<script src="/static/js/navbar.js"></script>
+	<script src="/static/js/profile.js"></script>
+	<script src="/static/js/token.js"></script>
+	<script src="/static/js/set-page-info.js"></script>
+	<script src="/static/js/init.js"></script>
+	<script src="/static/js/getGroup.js"></script>
+	<style>
+		.c_red {
+			background: #FF5F5F;
+		}
+
+		.c_red:hover {
+			background: #ff2222;
+			border-color: #000000;
+		}
+
+		.dropdown-menu.adjust {
+			position: absolute;
+			height: auto;
+			width: auto;
+			right: 0;
+			left: auto;
+			top: 40px;
+		}
+
+		.Sign_Bar {
+			position: relative;
+			width: 60px;
+			left: -4px;
+			top: 0%;
+
+			background: #ff3131;
+		}
+
+		.Sign_Bar:hover {
+			background: #f81111;
+		}
+
+		body {
+			background-image: url("https://picsum.photos/1600/1600?random=10");
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+
+		@media screen and (max-width:768px) {
+			body {
+				background-image: url("https://picsum.photos/2400/2400?random=9");
+				background-repeat: repeat;
+				background-attachment: fixed;
+			}
+		}
+	</style>
+	<title>選擇介面</title>
+</head>
+
+<body onload="init();">
+	<div class="container px-0">
+		<nav class="navbar bg-dark" data-bs-theme="dark">
+			<div class="container-fluid">
+				<div class="col d-flex justify-content-start">
+					<a class="navbar-brand mb-0 h1" href="#">
+						<img class="mx-1" src="static/imgs/eID-logo.png" width="55" height="30">
+						<img class="mx-1" src="static/imgs/ISU logo-s.png" width="55" height="30">
+					</a>
+				</div>
+				<div class="col d-flex justify-content-center">
+					<p class="fs-2 mb-0 text-light">選擇介面</p>
+				</div>
+				<div class="col d-flex justify-content-end">
+					<div class="dropdown">
+						<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							<i class="bi bi-gear"></i>
+						</a>
+						<ul class="dropdown-menu adjust">
+							<div class="container justify-content-center">
+								<div class="row" id="dropdown">
+									<!-- <li class="col-12 order-first"><a class="dropdown-item text-light" href="eid.html"><i
+												class="bi bi-person-vcard me-1"></i>身分資訊</a></li>
+									<li class="col-12 order-0"><a class="dropdown-item text-light" href="wallet.html"><i
+												class="bi bi-list-check me-1"></i>領取任務</a></li>
+									<li class="col-12 order-1"><a class="dropdown-item text-light" href="#"><i
+												class="bi bi-coin me-1"></i>交易所</a></li>
+									<li class="col-12 order-2"><a class="dropdown-item text-light" href="verified-tasks.html"><i
+												class="bi bi-book me-1"></i>歷史紀錄</a></li>
+									<li class="col-12 order-3"><a class="dropdown-item text-light" href="issues.html"><i
+												class="bi bi-people me-1"></i>永續合作</a></li>
+									<li class="col-12 order-last"><a class="dropdown-item text-light" href="#" onclick="logout()"><i
+												class="bi bi-door-open me-1"></i>登出</a></li> -->
+								</div>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container px-3" style="background: rgba(157, 245, 182, 0.562);">
+		<div class="row">
+			<div class="col-0 col-md-1 p-0 m-0 d-none d-md-block">
+				<a class="link-dark link-underline link-underline-opacity-0" href="#" onclick="logout()">
+					<div class="Sign_Bar h-100 d-flex justify-content-center align-items-center">
+						<p class="fs-1 m-0 p-3">登出</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-12 col-md-11 py-4">
+				<div class="row row-gap-5 d-flex justify-content-evenly">
+					<div class="col-10 col-md-5">
+						<div class="row border border-3 border-bottom-0 rounded-top-5 border-black"
+							style="background: #D08A00;">
+							<h1 class="d-flex justify-content-center my-1">身分資訊</h1>
+						</div>
+						<div class="row p-1 border border-3 border-top-0 border-bottom-0 border-black"
+							style="background: #C4C4C4;">
+							<div class="col-8">
+								<p class="fs-6">此介面是用來顯示個人的身分資料和編輯個人的暱稱和頭像</p>
+							</div>
+							<div class="col-4 p-1">
+								<img src="static/imgs/face_smile_man2.jpg" class="w-100 border border-2 border-black rounded-circle">
+							</div>
+						</div>
+						<a class="link-dark link-underline link-underline-opacity-0 " href="eid.html">
+							<div class="row border border-3 border-top-0 rounded-bottom-5 border-black c_red">
+								<h3 class="d-flex justify-content-center my-1">點此進入</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-10 col-md-5">
+						<div class="row border border-3 border-bottom-0 rounded-top-5 border-black"
+							style="background: #D08A00;">
+							<h1 class="d-flex justify-content-center my-1">領取任務</h1>
+						</div>
+						<div class="row p-1 border border-3 border-top-0 border-bottom-0 border-black"
+							style="background: #C4C4C4">
+							<div class="col-8">
+								<p class="fs-6">現在透過QRcode來領取任務(暫定)，預定之後做出系統根據個人的專長找出適合的任務</p>
+							</div>
+							<div class="col-4 p-1">
+								<img src="static/imgs/todo_people.jpg" class="w-100 border border-2 border-black rounded-circle">
+							</div>
+						</div>
+						<a class="link-dark link-underline link-underline-opacity-0 " href="wallet.html">
+							<div class="row border border-3 border-top-0 rounded-bottom-5 border-black c_red">
+								<h3 class="d-flex justify-content-center my-1">點此進入</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-10 col-md-5">
+						<div class="row border border-3 border-bottom-0 rounded-top-5 border-black"
+							style="background: #D08A00;">
+							<h1 class="d-flex justify-content-center my-1">交易所</h1>
+						</div>
+						<div class="row p-1 border border-3 border-top-0 border-bottom-0 border-black"
+							style="background: #C4C4C4">
+							<div class="col-8">
+								<p class="fs-6">可透過個人的完成任務時間來等價交換物品和服務</p>
+							</div>
+							<div class="col-4 p-1">
+								<img src="static/imgs/money_bag_dollar.jpg" class="w-100 border border-2 border-black rounded-circle">
+							</div>
+						</div>
+						<a class="link-dark link-underline link-underline-opacity-0 " href="#">
+							<div class="row border border-3 border-top-0 rounded-bottom-5 border-black c_red">
+								<h3 class="d-flex justify-content-center my-1">點此進入</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-10 col-md-5">
+						<div class="row  border border-3 border-bottom-0 rounded-top-5 border-black"
+							style="background: #D08A00;">
+							<h1 class="d-flex justify-content-center my-1">歷史紀錄</h1>
+						</div>
+						<div class="row p-1 border border-3 border-top-0 border-bottom-0 border-black"
+							style="background: #C4C4C4">
+							<div class="col-8">
+								<p class="fs-6">可以看到之前接取的任務詳細和交易所的使用紀錄</p>
+							</div>
+							<div class="col-4 p-1">
+								<img src="static/imgs/book_tosyokan_label.png" class="w-100 border border-2 border-black rounded-circle">
+							</div>
+						</div>
+						<a class="link-dark link-underline link-underline-opacity-0 " href="verified-tasks.html">
+							<div class="row border border-3 border-top-0 rounded-bottom-5 border-black c_red">
+								<h3 class="d-flex justify-content-center my-1">點此進入</h3>
+							</div>
+						</a>
+					</div>
+					<div class="col-10 col-md-5">
+						<div class="row border border-3 border-bottom-0 rounded-top-5 border-black"
+							style="background: #D08A00;">
+							<h1 class="d-flex justify-content-center my-1">永續合作</h1>
+						</div>
+						<div class="row p-1 border border-3 border-top-0 border-bottom-0 border-black"
+							style="background: #C4C4C4">
+							<div class="col-8">
+								<p class="fs-6">尋找目前已有的任務<br>發布任務(任務發起人專用)</p>
+							</div>
+							<div class="col-4 p-1">
+								<img src="static/imgs/leader_business_man.jpg" class="w-100 border border-2 border-black rounded-circle">
+							</div>
+						</div>
+						<a class="link-dark link-underline link-underline-opacity-0 " href="issues.html">
+							<div class="row border border-3 border-top-0 rounded-bottom-5 border-black c_red">
+								<h3 class="d-flex justify-content-center my-1">點此進入</h3>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

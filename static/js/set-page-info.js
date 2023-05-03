@@ -182,8 +182,8 @@ function setPageInfo() {
           const obj = JSON.parse(returnData);
           if (obj.result) {
             console.log("JWT still avliable");
-            // Redirect to eID page
-	           window.location.replace("/eid.html");
+            // Redirect to choice page
+	           window.location.replace("/choice.html");
           } else {
             // OK for signup, just return
             console.log("JWT still NOT avliable");
