@@ -7,6 +7,9 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: "微軟正黑體", "Microsoft JhengHei", arial, sans-serif;
+  background-image: url("https://picsum.photos/1600/1600?random=10");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .border-width-lg{
@@ -87,4 +90,34 @@ background-position: center center;
 
 .table-width-xl{
   min-width: 320px;
+}
+/* choice */
+.c_red {
+  background: #FF5F5F;
+}
+
+.c_red:hover {
+  background: #ff2222;
+  border-color: #000000;
+}
+
+.Sign_Bar {
+  position: relative;
+  width: 60px;
+  left: -4px;
+  top: 0%;
+
+  background: #ff3131;
+}
+
+.Sign_Bar:hover {
+  background: #f81111;
+}
+
+@media screen and (max-width:768px) {
+  body {
+    background-image: url("https://picsum.photos/1200/2400?random=9");
+    background-repeat: repeat;
+    background-attachment: fixed;
+  }
 }
