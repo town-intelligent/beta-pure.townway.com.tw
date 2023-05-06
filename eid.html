@@ -1,83 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-    <meta http-equiv="expires" content="0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-    <script src="/static/js/config.js"></script>
-    <script src="/static/js/localStorage.js"></script>
-    <script src="/static/js/auth.js"></script>
-    <script src="/static/js/navbar.js"></script>
-    <script src="/static/js/profile.js"></script>
-    <script src="/static/js/set-page-info.js"></script>
-    <script src="/static/js/init.js"></script>
-    <script src="/static/js/getGroup.js"></script>
-  </head>
-  <body onload="init();">
-    <div class="container-fluid border border-secondary border-width-lg min-vh-100">
-      <div class="row">
-        <div class="col">
-          <nav class="navbar navbar-expand-sm navbar-light bg-white align-items-center px-0">
-            <a class="navbar-brand mr-sm-3" href="index.html">
-              <img class="mr-1 logo-isu" src="/static/imgs/eID-logo.png">
-              <img class="logo-isu" src="/static/imgs/ISU logo-s.png">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/localStorage.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/navbar.js"></script>
+  <script src="/static/js/profile.js"></script>
+  <script src="/static/js/token.js"></script>
+  <script src="/static/js/set-page-info.js"></script>
+  <script src="/static/js/init.js"></script>
+  <script src="/static/js/getGroup.js"></script>
+</head>
+
+<body onload="init();">
+  <div class="container px-0 border border-5 border-bottom-0 border-black">
+    <nav class="navbar bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <div class="col d-flex justify-content-start">
+          <a class="navbar-brand mb-0 h1" href="#">
+            <img class="mx-1" src="static/imgs/eID-logo.png" width="55" height="30">
+            <img class="mx-1" src="static/imgs/ISU logo-s.png" width="55" height="30">
+          </a>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <p class="fs-2 mb-0 text-light">身分資訊</p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-gear"></i>
             </a>
-            <a class="navbar-brand mr-0 ml-auto d-sm-none" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-              <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
-            </a>
-              <ul class="nav nav-tabs w-100 mr-sm-3 mt-3 mt-sm-0">
-                <li class="nav-item">
-                  <a class="nav-link active px-2 px-sm-3" href="/eid.html">身分證</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link px-2 px-sm-3" href="/issues.html">永續合作</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link px-2 px-sm-3" href="/foot_print.html">數位足跡</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link px-2 px-sm-3" href="/wallet.html">領取任務</a>
-                </li>
-              </ul>
-              <a class="navbar-brand mr-0 ml-auto d-none d-sm-block" href="#" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                <img style="width: 45px"src="/static/imgs/user-edit-solid.svg">
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" id="dropdown">
-              </div>
-          </nav>
-          <div class="container">
-              <div class="row mt-2 align-items-center justify-content-center justify-content-sm-start">
-                <div class="col-10 col-sm-6 order-2 order-sm-1 mt-4 mt-sm-0">
-                  <p class="mb-0">數位居民身份證</p>
-                  <p>The eID card for digital townie</p>
-                  <div id="username" class="h3">
-                    <div id="userid" style="display: inline"> </div>
-                  </div>
-                  <p>
-                    累積時數 : <span id="balance">000</span>小時
-                  </p>
-                </div>
-                <div class="col-10 col-sm-6 order-1 order-sm-2">
-                  <div class="card">
-                    <div id="img_avatar" class="bg-contain" style="background-image: url(/static/imgs/pages/user.png); height: 250px; background-repeat: no-repeat" ></div>
-                  </div>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <div class="container justify-content-center">
+                <div class="row" id="dropdown">
                 </div>
               </div>
+            </ul>
           </div>
         </div>
       </div>
+    </nav>
+  </div>
+  <div class="container w-100" style="background: rgba(0, 216, 60, 0.1);">
+    <div class="row p-3 mt-0 d-flex align-items-center border border-3 border-top-0 border-bottom-0 border-black">
+      <div class="col-5">
+        <h1 class="m-0">基本資料</h1>
+      </div>
+      <div class="col-7 d-flex justify-content-end">
+        <a href="#"
+          class="col-6 col-md-3 d-flex justify-content-center m-2 border border-3 border-black link-underline link-underline-opacity-0 rounded-5 c_aqua">
+          <span class="fs-6 my-auto text-black">編輯資料</span>
+        </a>
+        <a href="#"
+          class="col-6 col-md-3 d-flex justify-content-center m-2 border border-3 border-black link-underline link-underline-opacity-0 rounded-5 c_aqua">
+          <span class="fs-6 my-auto text-black">更改密碼</span>
+        </a>
+      </div>
     </div>
-  </body>
+    <div class="row p-4 border border-3 border-black d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-5 order-2 order-md-1 mt-2">
+        <p class="fs-4 fw-bold" id="username">使用者名稱</p>
+        <p class="fs-6" id="userid"></p>
+        <p class="fs-4 fw-bold mt-5">電子郵件</p>
+        <p class="fs-6" id="email"></p>
+        <p class="fs-4 fw-bold mt-5">身分識別</p>
+        <p class="fs-6" id="group"></p>
+        <p class="fs-4 fw-bold mt-5">時數</p>
+        <p class="fs-6" id="balance" id="balance"> 小時(hr)</p>
+        <p class="fs-4 fw-bold mt-5">信用點數</p>
+        <p class="fs-6">0~100 or -50~50</p>
+      </div>
+      <div class="col-12 col-md-5 order-1 order-md-2">
+        <div id="img_avatar" class="bg-contain"
+          style="background-image: url(/static/imgs/pages/user.png); height: 250px; background-repeat: no-repeat">
+        </div>
+      </div>
+    </div>
+    <div class="row p-3 mt-0 d-flex align-items-center border border-3 border-top-0 border-bottom-0 border-black">
+      <div class="col-5">
+        <h1 class="m-0">專長</h1>
+      </div>
+    </div>
+    <div class="row p-3 mt-0 d-flex align-items-center border border-3 border-black">
+      <div class="row row-gap-3">
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="行政支援" type="checkbox" id="gridCheck1" disabled>
+            <label class="form-check-label ps-3" for="gridCheck1">
+              1. 行政支援
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="課業輔導" type="checkbox" id="gridCheck2" disabled>
+            <label class="form-check-label ps-3" for="gridCheck2">
+              2. 課業輔導
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="社區服務" type="checkbox" id="gridCheck3" disabled>
+            <label class="form-check-label ps-3" for="gridCheck3">
+              3. 社區服務
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="生活扶助" type="checkbox" id="gridCheck4" disabled>
+            <label class="form-check-label ps-3" for="gridCheck4">
+              4. 生活扶助
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="電腦科技" type="checkbox" id="gridCheck5" disabled>
+            <label class="form-check-label ps-3" for="gridCheck5">
+              5. 電腦科技
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="環保教育" type="checkbox" id="gridCheck6" disabled>
+            <label class="form-check-label ps-3" for="gridCheck6">
+              6. 環保教育
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="藝術文化" type="checkbox" id="gridCheck7" disabled>
+            <label class="form-check-label ps-3" for="gridCheck7">
+              7. 藝術文化
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="健康醫療" type="checkbox" id="gridCheck8" disabled>
+            <label class="form-check-label ps-3" for="gridCheck8">
+              8. 健康醫療
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="權益倡導" type="checkbox" id="gridCheck9" disabled>
+            <label class="form-check-label ps-3" for="gridCheck9">
+              9. 權益倡導
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" value="國際交流" type="checkbox" id="gridCheck10" disabled>
+            <label class="form-check-label ps-3" for="gridCheck10">
+              10. 國際交流
+            </label>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input checkbox-1x skillCheck" type="checkbox" id="otherCheck" disabled
+              onclick="checkBoxFn()">
+            <label class="form-check-label ps-3" for="otherCheck">
+              11. 其他
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <textarea class="form-control" id="textArea" disabled rows="2" style="display: none;"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-25" id="submitBtn" style="display: none;">儲存</button> 
+      <!-- 不想有驚嘆號 -->
+    </div>
+    <div class="row d-flex justify-content-center align border border-3 border-top-0 border-black">
+      <a href="choice.html"
+        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 c_blue">
+        <p class="fs-3 d-flex justify-content-center my-auto text-light">返回</p>
+      </a>
+    </div>
+  </div>
+  <script src="/static/js/set-description.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+<a href=""></a>
 </html>
