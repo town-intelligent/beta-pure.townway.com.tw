@@ -239,7 +239,7 @@ function setPageInfo() {
           if (obj.result) {
             console.log("JWT still avliable");
             // Redirect to choice page
-	           window.location.replace("/choice.html");
+	          window.location.replace("/choice.html");
           } else {
             // OK for signup, just return
             console.log("JWT still NOT avliable");
