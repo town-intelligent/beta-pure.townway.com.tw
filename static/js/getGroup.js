@@ -63,7 +63,7 @@ function dropdown () {
             class="bi bi-person-vcard me-1"></i>身分資訊</a></li>
       <li class="col order-0"><a class="dropdown-item text-light" href="wallet.html"><i
             class="bi bi-list-check me-1"></i>領取任務</a></li>
-      <li class="col order-1"><a class="dropdown-item text-light" href="#"><i
+      <li class="col order-1"><a class="dropdown-item text-light" href="trade.html"><i
             class="bi bi-coin me-1"></i>交易所</a></li>
       <li class="col order-2"><a class="dropdown-item text-light" href="verified-tasks.html"><i
             class="bi bi-book me-1"></i>歷史紀錄</a></li>
