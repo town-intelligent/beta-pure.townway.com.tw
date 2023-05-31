@@ -43,6 +43,62 @@ function setPageInfo() {
     if (group.group != "202") {
       set_account_group("203");
     }
+
+    document.getElementById("email").innerHTML = getLocalStorage("email");
+    document.getElementById("balance").innerHTML = getLocalStorage("balance");
+    var obj_group = get_group();
+    if (obj_group.group == "200" || obj_group.group == "201"){
+      document.getElementById("group").innerHTML = "驗證者";
+    } else {
+      document.getElementById("group").innerHTML = "志工";
+    }
+
+    var obj_des = get_des();
+    if (obj_des.result == true){
+      var list_skills = obj_des.description.hhhhhhh;
+      for(var index_skill = 0; index_skill<list_skills.length; index_skill++) {
+        if (list_skills[index_skill] == "行政支援") {
+          document.getElementById("gridCheck1").checked = true;
+        }
+        if (list_skills[index_skill] == "課業輔導") {
+          document.getElementById("gridCheck2").checked = true;
+        }
+        if (list_skills[index_skill] == "社區服務") {
+          document.getElementById("gridCheck3").checked = true;
+        }
+        if (list_skills[index_skill] == "生活扶助") {
+          document.getElementById("gridCheck4").checked = true;
+        }
+        if (list_skills[index_skill] == "電腦科技") {
+          document.getElementById("gridCheck5").checked = true;
+        }
+        if (list_skills[index_skill] == "環保教育") {
+          document.getElementById("gridCheck6").checked = true;
+        }
+        if (list_skills[index_skill] == "藝術文化") {
+          document.getElementById("gridCheck7").checked = true;
+        }
+        if (list_skills[index_skill] == "健康醫療") {
+          document.getElementById("gridCheck8").checked = true;
+        }
+        if (list_skills[index_skill] == "權益倡導") {
+          document.getElementById("gridCheck9").checked = true;
+        }
+        if (list_skills[index_skill] == "國際交流") {
+          document.getElementById("gridCheck10").checked = true;
+        }
+        if (list_skills[index_skill] == "其他") {
+
+          if (obj_des.description.others == ""){
+            document.getElementById("otherCheck").checked = false;
+          } else {
+            document.getElementById("otherCheck").checked = true;
+            document.getElementById("textArea").style.display = "block";
+            document.getElementById("textArea").value = obj_des.description.others;
+          }
+        }
+      }
+    }
     setInfoEid();
   } else if (page.includes("issue")) {
     $("#nav-issues").addClass("active");
@@ -182,8 +238,8 @@ function setPageInfo() {
           const obj = JSON.parse(returnData);
           if (obj.result) {
             console.log("JWT still avliable");
-            // Redirect to eID page
-	           window.location.replace("/eid.html");
+            // Redirect to choice page
+	          window.location.replace("/choice.html");
           } else {
             // OK for signup, just return
             console.log("JWT still NOT avliable");

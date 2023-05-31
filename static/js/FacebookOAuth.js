@@ -22,5 +22,5 @@ function eIDFacebookLogin(input_token, res) {
       console.log(thrownError);
     }
   });
-   window.location.replace("/eid.html");
+   window.location.replace("/choice.html");
 }

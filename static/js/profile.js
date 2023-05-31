@@ -15,7 +15,7 @@ function edit_username() {
        const obj = JSON.parse(returnData);
        // Reset localStorage
        setLocalStorage("username", obj.username);
-       window.location.replace("/eid.html");
+       window.location.replace("/choice.html");
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
