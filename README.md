@@ -1,4 +1,4 @@
 # eid-web
 
 ## URL
-- https://beta-pure.townway.com.tw/
+- https://x-stardust-x.github.io/

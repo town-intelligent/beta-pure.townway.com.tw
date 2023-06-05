@@ -23,7 +23,7 @@ function eIDLogin(id_token, res) {
       console.log(thrownError);
     }
   });
-   window.location.replace("/eid.html");
+   window.location.replace("/choice.html");
 }
 
 //jQuery處理button click event 當畫面DOM都載入時....
