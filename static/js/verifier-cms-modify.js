@@ -11,8 +11,7 @@ function set_page_info_verifier_cms_modify(){
 // Params
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-var uuid = urlParams.get("task")
-
+var uuid = urlParams.get("task");
 
 let settings = {
   "url": `${HOST_URL_TPLANET_DAEMON}/tasks/get/${uuid}`,
@@ -41,27 +40,31 @@ function renderTask(taskData){
   document.getElementById('token').value = taskData.token;
 }
 
-const doneBtn = document.getElementById('doneBtn');
 document.addEventListener('DOMContentLoaded', function() {
+  const doneBtn = document.getElementById('doneBtn');
   doneBtn.addEventListener("click", function () {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var uuid = urlParams.get("task");
     var form = new FormData();
-    var uuid = "00000001";
-    var email = "yillkid@gmail.com";
+    var email = "400@gmail.com";
     var type = "1";
-    var name = document.getElementById("taskname").value; // "test001";
+    var name = document.getElementById("taskName").value; // "test001";
     var overview = document.getElementById("taskContent").value;// "overview123";
     var token = document.getElementById("token").value; // "test001";
     var cover = getLocalStorage("task_cover");//`${TASK_COVER}`;
     
     form.append("uuid", uuid);
+    form.append("tasks", "[{\"sdg\":1, \"des\":\"123\"}, {\"sdg\":2, \"des\":\"456\"}, {\"sdg\":3, \"des\":\"789\"}, {\"task_parent_id\":\"75324881\"}]");
     form.append("email", email);
+    form.append("token", token);
     form.append("type", type);
     form.append("name", name);
-    form.append("token", token);
     form.append("overview", overview);
     form.append("cover", cover);
+    form.append("gps_flag", "true");
 
-    
+    delete_task()
     var settings = {
       "url": "https://beta-tplanet-backend.townway.com.tw/tasks/new",
       "method": "POST",
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     $.ajax(settings).done(function (response) {
       console.log(response);
-      window.location.replace("/verifier-cms-list.html");
+      // window.location.replace('/verifier-cms-list.html');
     });
   });
 });

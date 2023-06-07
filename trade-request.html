@@ -17,6 +17,7 @@
   <script src="/static/js/auth.js"></script>
   <script src="/static/js/navbar.js"></script>
   <script src="/static/js/profile.js"></script>
+  <script src="/static/js/image.js"></script>
   <script src="/static/js/token.js"></script>
   <script src="/static/js/set-page-info.js"></script>
   <script src="/static/js/init.js"></script>
@@ -57,18 +58,20 @@
     <div class="row border border-3 border-top-0 border-black py-2">
       <div class="col-12 col-md-6 order-1 order-md-0">
         <p class="fs-4 fw-bold" id="request">交易任務名稱</p>
-        <input class="fs-5 bg-secondary text-light" id="request_name"></input>
+        <input class="fs-5 bg-secondary text-light" id="task_name"></input>
         <p class="fs-4 fw-bold mt-5">交易時數</p>
         <div class="input-group mb-3">
-          <input type="text" class="form-control bg-secondary text-light" id="request_time">
+          <input type="text" class="form-control bg-secondary text-light" id="token">
           <span class="input-group-text bg-secondary text-light">小時</span>
         </div>
         <p class="fs-4 fw-bold mt-5">交易任務理念</p>
-        <textarea class="fs-5 bg-secondary text-light form-control" id="request_text" rows="4"></textarea>
+        <textarea class="fs-5 bg-secondary text-light form-control" id="overview" rows="4"></textarea>
       </div>
       <div class="col-12 col-md-6 order-0 order-md-1 d-flex justify-content-center align-items-center">
-        <div class="text-center">
-          <img src="https://picsum.photos/300/300?random=10" class="rounded" class="w-100">
+        <div class="text-center d-flex justify-content-center">
+          <a href="#" onclick="setImgToLS('task_cover');" class="stretched-link position-relative">
+            <img id="task_cover" src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
+          </a>
         </div>
       </div>
     </div>
@@ -83,6 +86,7 @@
       </button>
     </div>
   </div>
+  <script src="/static/js/new_tasks.js"></script>
 </body>
 
 </html>

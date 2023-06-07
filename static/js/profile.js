@@ -123,3 +123,9 @@ function get_des(){
   return dataJason;
 }
 
+function get_type(event) {
+      event.preventDefault();
+      var linkText = event.target.textContent;
+      var nextPageURL = '../trade-request.html?text=' + encodeURIComponent(linkText);
+      window.location.href = nextPageURL;
+    }
