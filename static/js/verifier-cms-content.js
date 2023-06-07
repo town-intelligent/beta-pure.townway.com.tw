@@ -27,5 +27,12 @@ function delete_task() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    window.location.replace('/verifier-cms-list.html')
   });
+}
+
+function uuid_to_modify(){
+  var urlParams = new URLSearchParams(window.location.search);
+  var uuid = urlParams.get('task');
+  window.location.replace('verifier-cms-modify.html?task='+ uuid)
 }

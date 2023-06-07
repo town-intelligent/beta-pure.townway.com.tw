@@ -260,5 +260,7 @@ function setPageInfo() {
       var repos_verified_tasks = get_verified_tasks();
       var list_verified_tasks = repos_verified_tasks.uuid;
       addVerifiedTable(list_verified_tasks);
+    } else if (page == "verified-cms-modify.html") {
+      set_page_info_verifier_cms_content();
     }
 }
