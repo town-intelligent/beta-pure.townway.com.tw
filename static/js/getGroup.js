@@ -39,9 +39,9 @@ function getGroup(data){
   if(data.group === '202'){
     Dropdown.innerHTML=`
     ${dropdown()}
-    <li class="col order-4"><a class="dropdown-item text-light" href="verifier-cms-list.html"><i
+    <li class="col order-1"><a class="dropdown-item text-light" href="verifier-cms-list.html"><i
 				class="bi bi-ticket me-1"></i>發布任務</a></li>
-		<li class="col order-5"><a class="dropdown-item text-light" href="verifier-cms-executor-section.html"><i
+		<li class="col order-1"><a class="dropdown-item text-light" href="verifier-cms-executor-section.html"><i
 				class="bi bi-people me-1"></i>志工專區</a></li>
     `
     /*<a class="dropdown-item d-flex align-items-center" href="/verifier-cms-list.html">
@@ -59,15 +59,15 @@ function getGroup(data){
 
 function dropdown () {
   return `
-      <li class="col order-first"><a class="dropdown-item text-light" href="eid.html"><i
+      <li class="col order-0"><a class="dropdown-item text-light" href="eid.html"><i
             class="bi bi-person-vcard me-1"></i>身分資訊</a></li>
       <li class="col order-0"><a class="dropdown-item text-light" href="wallet.html"><i
             class="bi bi-list-check me-1"></i>領取任務</a></li>
-      <li class="col order-1"><a class="dropdown-item text-light" href="trade.html"><i
+      <li class="col order-0"><a class="dropdown-item text-light" href="trade.html"><i
             class="bi bi-coin me-1"></i>交易所</a></li>
-      <li class="col order-2"><a class="dropdown-item text-light" href="verified-tasks.html"><i
+      <li class="col order-0"><a class="dropdown-item text-light" href="verified-tasks.html"><i
             class="bi bi-book me-1"></i>歷史紀錄</a></li>
-      <li class="col order-3"><a class="dropdown-item text-light" href="issues.html"><i
+      <li class="col order-0"><a class="dropdown-item text-light" href="issues.html"><i
             class="bi bi-people me-1"></i>永續合作</a></li>
       <li class="col order-last"><a class="dropdown-item text-light" href="#" onclick="logout()"><i
             class="bi bi-door-open me-1"></i>登出</a></li>
