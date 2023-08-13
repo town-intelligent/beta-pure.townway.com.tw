@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
      var cover = getLocalStorage("task_cover");
     
      form.append("uuid", "00000001");  
+     form.append("task", uuid)
      form.append("tasks", "[{\"sdg\":1, \"des\":\"123\"}, {\"sdg\":2, \"des\":\"456\"}, {\"sdg\":3, \"des\":\"789\"}]");
      form.append("email", email);
      form.append("token", token);
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
      $.ajax(settings).done(function (response) {
        console.log(response);
-       // window.location.replace('/verifier-cms-list.html');
+       window.location.replace('/verifier-cms-list.html');
      });
   });
 });

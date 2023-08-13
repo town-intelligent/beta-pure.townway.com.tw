@@ -14,7 +14,7 @@ function setInfoEid() {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Set balance
+       setLocalStorage("balance", obj);
        var balance = document.getElementById("balance");
        balance.innerHTML = obj;
     },
