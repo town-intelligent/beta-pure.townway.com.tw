@@ -269,3 +269,4 @@ function setPageInfo() {
       balance.innerHTML = obj;
     }
 }
+
