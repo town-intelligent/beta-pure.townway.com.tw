@@ -262,5 +262,10 @@ function setPageInfo() {
       addVerifiedTable(list_verified_tasks);
     } else if (page == "verified-cms-modify.html") {
       set_page_info_verifier_cms_content();
+    } else if (page == "trade.html") {
+      setLocalStorage("balance", get_balance());
+      obj = getLocalStorage("balance");
+      var balance = document.getElementById("money");
+      balance.innerHTML = obj;
     }
 }

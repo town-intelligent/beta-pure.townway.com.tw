@@ -103,7 +103,7 @@
             setLocalStorage("email", $("#email").val());
             console.log("Get JWT from cookie" + getLocalStorage("jwt"));
             balance = get_balance();
-            setLocalStorage("balance", balance);
+            //setLocalStorage("balance", balance);
             window.location.replace("/choice.html");
           },
           error: function (xhr, ajaxOptions, thrownError) {
