@@ -27,7 +27,7 @@ doneBtn.addEventListener("click", function () {
     "data": form,
     "headers": {
       "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCookie('csrftoken'),  // 使用getCookie函數獲取CSRF標記值
+      "X-CSRFToken": "140DEwA9dBIvNQOfuvXxeNvHCozJz3fG",  // 使用getCookie函數獲取CSRF標記值
     }
   };
 
