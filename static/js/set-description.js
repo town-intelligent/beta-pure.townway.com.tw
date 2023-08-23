@@ -51,6 +51,7 @@ submitBtn.addEventListener("click", async function () {
   await setDescription(url, form);
 
   alert("設定成功！");
+  window.location.replace("/eid.html");
 });
 
 async function setDescription(url, data) {

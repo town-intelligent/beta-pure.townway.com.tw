@@ -59,6 +59,8 @@ function getGroup(data){
 
 function dropdown () {
   return `
+      <li class="col order-first"><a class="dropdown-item text-light" href="choice.html"><i
+            class="bi bi-house me-1"></i>選擇介面</a></li>
       <li class="col order-0"><a class="dropdown-item text-light" href="eid.html"><i
             class="bi bi-person-vcard me-1"></i>身分資訊</a></li>
       <li class="col order-0"><a class="dropdown-item text-light" href="wallet.html"><i

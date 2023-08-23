@@ -17,16 +17,16 @@
   <script src="/static/js/auth.js"></script>
   <script src="/static/js/navbar.js"></script>
   <script src="/static/js/profile.js"></script>
-  <script src="/static/js/image.js"></script>
   <script src="/static/js/token.js"></script>
   <script src="/static/js/set-page-info.js"></script>
   <script src="/static/js/init.js"></script>
   <script src="/static/js/getGroup.js"></script>
+  <script src="/static/js/image.js"></script>
   <title>交易所-要求</title>
 
 <body>
   <div class="container px-0 border border-3 border-bottom-0 border-black">
-    <nav class="navbar bg-dark" data-bs-theme="dark">
+    <nav class="navbar bg-dark bg-gradient" data-bs-theme="dark">
       <div class="container-fluid">
         <div class="col d-flex justify-content-start">
           <a class="navbar-brand mb-0 h1" href="index.html">
@@ -35,7 +35,7 @@
           </a>
         </div>
         <div class="col d-flex justify-content-center">
-          <p class="fs-4 mb-0 text-light">交易設定</p>
+          <p class="fs-2 mb-0 text-light">交易設定</p>
         </div>
         <div class="col d-flex justify-content-end">
           <div class="dropdown">
@@ -57,21 +57,26 @@
   <div class="container" style="background:rgba(157, 245, 182, 0.562);">
     <div class="row border border-3 border-top-0 border-black py-2">
       <div class="col-12 col-md-6 order-1 order-md-0">
-        <p class="fs-4 fw-bold" id="request">交易任務名稱</p>
-        <input class="fs-5 bg-secondary text-light" id="task_name"></input>
-        <p class="fs-4 fw-bold mt-5">交易時數</p>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control bg-secondary text-light" id="token">
-          <span class="input-group-text bg-secondary text-light">小時</span>
+        <div class="mb-3">
+          <label for="task_name" class="form-label fs-3 fw-bold">交易任務名稱</label>
+          <input type="text" class="form-control" id="task_name" value="打掃" readonly>
         </div>
-        <p class="fs-4 fw-bold mt-5">交易任務理念</p>
-        <textarea class="fs-5 bg-secondary text-light form-control" id="overview" rows="4"></textarea>
+        <div class="col-4 mb-3">
+          <label for="token" class="form-label fs-3 fw-bold">交易時數</label>
+          <div class="input-group">
+            <input type="number" value="1" name="Time" min="1" max="12" step="1" class="form-control" id="token">
+            <span class="input-group-text">小時</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="overview" class="form-label fs-3 fw-bold">交易任務理念</label>
+          <textarea class="form-control" id="overview" rows="3"></textarea>
+        </div>
       </div>
       <div class="col-12 col-md-6 order-0 order-md-1 d-flex justify-content-center align-items-center">
-        <div class="text-center d-flex justify-content-center">
-          <a href="#" onclick="setImgToLS('task_cover');" class="stretched-link position-relative">
-            <img id="task_cover" src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
-          </a>
+        <div class="border d-flex align-items-center justify-content-center position-relative" style="height: 120px;">
+          <img id="task_cover" src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
+          <a href="#" onclick="setImgToLS('task_cover');" class="stretched-link"></a>
         </div>
       </div>
     </div>
@@ -81,8 +86,9 @@
         <p class="fs-3 d-flex justify-content-center my-auto text-light">返回</p>
       </a>
       <button
-        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-danger">
-        <p class="fs-3 d-flex justify-content-center my-auto text-light" id="doneBtn">確認</p>
+        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-danger"
+        id="doneBtn">
+        <p class="fs-3 d-flex justify-content-center my-auto text-light">確認</p>
       </button>
     </div>
   </div>

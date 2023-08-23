@@ -2,8 +2,9 @@ const doneBtn = document.getElementById('doneBtn');
 doneBtn.addEventListener("click", function () {
   var form = new FormData();
   var uuid = "00000001";
-  var email = "yillkid@gmail.com";
+  var email = getLocalStorage("email");
   var type = "1";
+  var balance = getLocalStorage("balance");
   var name = document.getElementById("task_name").value; // "test001";
   var overview = document.getElementById("overview").value; // "overview123";
   var token = document.getElementById("token").value; // "test001";
@@ -12,6 +13,7 @@ doneBtn.addEventListener("click", function () {
   form.append("uuid", uuid);
   form.append("email", email);
   form.append("type", type);
+  form.append("balance", balance);
   form.append("name", name);
   form.append("token", token);
   form.append("overview", overview);
@@ -33,6 +35,6 @@ doneBtn.addEventListener("click", function () {
 
   $.ajax(settings).done(function (res) {
     console.log(res);
-    // window.location.replace("/verifier-cms-list.html");
+    window.location.replace("/trade.html");
   });
 });
