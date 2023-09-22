@@ -56,47 +56,74 @@ function setPageInfo() {
     var obj_des = get_des();
     if (obj_des.result == true) {
       var list_skills = obj_des.description.hhhhhhh;
+      console.log(list_skills);
+      var list_des = document.getElementById("list_des");
       for (var index_skill = 0; index_skill < list_skills.length; index_skill++) {
-        if (list_skills[index_skill] == "行政支援") {
-          document.getElementById("gridCheck1").checked = true;
+        var cols = document.createElement("div");
+        cols.setAttribute("class","col-12 col-md-3 fs-4");
+        cols.append(index_skill+1 + '.' + list_skills[index_skill]);
+        if(list_skills[index_skill] != "其他"){
+          list_des.append(cols);
         }
-        if (list_skills[index_skill] == "課業輔導") {
-          document.getElementById("gridCheck2").checked = true;
-        }
-        if (list_skills[index_skill] == "社區服務") {
-          document.getElementById("gridCheck3").checked = true;
-        }
-        if (list_skills[index_skill] == "生活扶助") {
-          document.getElementById("gridCheck4").checked = true;
-        }
-        if (list_skills[index_skill] == "電腦科技") {
-          document.getElementById("gridCheck5").checked = true;
-        }
-        if (list_skills[index_skill] == "環保教育") {
-          document.getElementById("gridCheck6").checked = true;
-        }
-        if (list_skills[index_skill] == "藝術文化") {
-          document.getElementById("gridCheck7").checked = true;
-        }
-        if (list_skills[index_skill] == "健康醫療") {
-          document.getElementById("gridCheck8").checked = true;
-        }
-        if (list_skills[index_skill] == "權益倡導") {
-          document.getElementById("gridCheck9").checked = true;
-        }
-        if (list_skills[index_skill] == "國際交流") {
-          document.getElementById("gridCheck10").checked = true;
-        }
-        if (list_skills[index_skill] == "其他") {
-
-          if (obj_des.description.others == "") {
-            document.getElementById("otherCheck").checked = false;
-          } else {
-            document.getElementById("otherCheck").checked = true;
-            document.getElementById("textArea").style.display = "block";
-            document.getElementById("textArea").value = obj_des.description.others;
+        else{
+          if(obj_des.description.others != ""){
+            list_des.append(cols);
+            cols.setAttribute("class","col-12 fs-4");
+            let TA = document.createElement("textarea");
+            TA.setAttribute("class","form-control");
+            TA.setAttribute("rows",2);
+            if(obj_des.description.others == ""){
+              TA.setAttribute("style","display : none;");  
+            }
+            else{
+              TA.setAttribute("style","display : block;");  
+            }
+            TA.setAttribute("readonly","");
+            TA.append(obj_des.description.others);
+            cols.append(TA);
+            list_des.append(cols);
           }
         }
+        // if (list_skills[index_skill] == "行政支援") {
+        //   document.getElementById("gridCheck1").checked = true;
+        // }
+        // if (list_skills[index_skill] == "課業輔導") {
+        //   document.getElementById("gridCheck2").checked = true;
+        // }
+        // if (list_skills[index_skill] == "社區服務") {
+        //   document.getElementById("gridCheck3").checked = true;
+        // }
+        // if (list_skills[index_skill] == "生活扶助") {
+        //   document.getElementById("gridCheck4").checked = true;
+        // }
+        // if (list_skills[index_skill] == "電腦科技") {
+        //   document.getElementById("gridCheck5").checked = true;
+        // }
+        // if (list_skills[index_skill] == "環保教育") {
+        //   document.getElementById("gridCheck6").checked = true;
+        // }
+        // if (list_skills[index_skill] == "藝術文化") {
+        //   document.getElementById("gridCheck7").checked = true;
+        // }
+        // if (list_skills[index_skill] == "健康醫療") {
+        //   document.getElementById("gridCheck8").checked = true;
+        // }
+        // if (list_skills[index_skill] == "權益倡導") {
+        //   document.getElementById("gridCheck9").checked = true;
+        // }
+        // if (list_skills[index_skill] == "國際交流") {
+        //   document.getElementById("gridCheck10").checked = true;
+        // }
+        // if (list_skills[index_skill] == "其他") {
+
+        //   if (obj_des.description.others == "") {
+        //     document.getElementById("otherCheck").checked = false;
+        //   } else {
+        //     document.getElementById("otherCheck").checked = true;
+        //     document.getElementById("textArea").style.display = "block";
+        //     document.getElementById("textArea").value = obj_des.description.others;
+        //   }
+        // }
       }
     }
     setInfoEid();
@@ -264,8 +291,6 @@ function setPageInfo() {
       set_page_info_verifier_cms_content();
     } else if (page == "trade.html") {
       setLocalStorage("balance", get_balance());
-      obj = getLocalStorage("balance");
-      var balance = document.getElementById("money");
-      balance.innerHTML = obj;
+      document.getElementById("balance").innerHTML = getLocalStorage("balance");
     }
 }

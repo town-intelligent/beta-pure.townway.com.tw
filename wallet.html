@@ -21,6 +21,30 @@
   <script src="/static/js/set-page-info.js"></script>
   <script src="/static/js/getGroup.js"></script>
   <script src="/static/js/init.js"></script>
+  <script>
+    function Change_m() {
+      const camera = document.getElementById('camera');
+      const mission = document.getElementById('mission');
+      const btn1 = document.getElementById('btn1');
+      const btn2 = document.getElementById('btn2');
+      const text = "d-flex justify-content-end";
+      camera.setAttribute("class", "d-none")
+      mission.setAttribute("class", "")
+      btn1.setAttribute("class", text + ' d-none');
+      btn2.setAttribute("class", text);
+    }
+    function Change_c() {
+      const camera = document.getElementById('camera');
+      const mission = document.getElementById('mission');
+      const btn1 = document.getElementById('btn1');
+      const btn2 = document.getElementById('btn2');
+      const text = "d-flex justify-content-end";
+      camera.setAttribute("class", "")
+      mission.setAttribute("class", "d-none")
+      btn1.setAttribute("class", text);
+      btn2.setAttribute("class", text + " d-none");
+    }
+  </script>
 </head>
 
 <body onload="init();">
@@ -55,18 +79,43 @@
   </div>
   <div class="container" style="background: rgba(157, 245, 182, 0.562);">
     <!-- border border-secondary border-width-lg -->
-    <div class="row justify-content-center py-3 border border-3 border-black">
-      <div class="col-12 col-md-7">
-        <div class="text-center">
-          <script src="/static/html5-qrcode/dist/html5-qrcode.min.js"></script>
-          <script src="/static/js/qrcode.js"></script>
-          <div id="qr-reader" style="width: 300px"></div>
+    <div class="row d-flex justify-content-end border border-3 border-top-0 border-black">
+      <div id="btn1" class="d-flex justify-content-end">
+        <button onclick="Change_m()"
+          class="m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-warning">
+          <p class="fs-5 text-center my-auto text-dark">切換手動</p>
+        </button>
+      </div>
+      <div id="btn2" class="d-flex justify-content-end d-none">
+        <button onclick="Change_c()"
+          class="m-2 me-3 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-warning">
+          <p class="fs-5 text-center my-auto text-dark">切換攝影機</p>
+        </button>
+      </div>
+    </div>
+    <div id="camera" class="">
+      <div class="row justify-content-center py-3 border border-3 border-black">
+        <div class="col-12 col-md-7">
+          <div class="text-center">
+            <script src="/static/html5-qrcode/dist/html5-qrcode.min.js"></script>
+            <script src="/static/js/qrcode.js"></script>
+            <div id="qr-reader" style="width: 300px"></div>
+          </div>
+        </div>
+        <div class="col-12 col-md-5">
+          <div class="text-center">
+            <img src="/static/imgs/qrcode.png" alt="">
+          </div>
         </div>
       </div>
-      <div class="col-12 col-md-5">
-        <div class="text-center">
-          <img src="/static/imgs/qrcode.png" alt="">
-        </div>
+    </div>
+    <div id="mission" class="d-none">
+      <div class="row d-flex justify-content-center border border-3 border-top-0 border-black">
+        <!-- 3 9 or 2 10 -->
+        <a href="#"
+          class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-primary">
+          <p class="fs-3 text-center my-auto text-light">任務列表清單</p>
+        </a>
       </div>
     </div>
     <div class="row d-flex justify-content-center border border-3 border-top-0 border-black">
@@ -79,3 +128,10 @@
 </body>
 
 </html>
+
+
+<button
+  class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-danger"
+  id="testBtn">
+  <p class="fs-3 d-flex justify-content-center my-auto text-light">任務接取測試</p>
+</button>
