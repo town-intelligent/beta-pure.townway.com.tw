@@ -22,10 +22,11 @@
   <script src="/static/js/init.js"></script>
   <script src="/static/js/getGroup.js"></script>
   <title>交易所</title>
+</head>
 
-<body>
+<body onload="init();">
   <div class="container px-0 border border-3 border-bottom-0 border-black">
-    <nav class="navbar bg-dark" data-bs-theme="dark">
+    <nav class="navbar bg-dark bg-gradient" data-bs-theme="dark">
       <div class="container-fluid">
         <div class="col d-flex justify-content-start">
           <a class="navbar-brand mb-0 h1" href="index.html">
@@ -56,24 +57,29 @@
   <div class="container" style="background:rgba(157, 245, 182, 0.562);">
     <div class="row border border-3 border-black">
       <div class="col d-flex justify-content-end">
-        <h2 class="my-1">時間餘額 <span class="fs-4" id="money">000小時</span></h2>
+        <p class="my-1 fs-3"><i class="bi bi-clock me-2"></i>時間餘額<span class="fs-3" id="balance">0</span>小時</p>
       </div>
     </div>
     <div class="row border border-3 border-top-0 border-black">
       <div class="col d-flex justify-content-start">
-        <h2 class="my-1">可兌換服務項目</h2>
+        <h2 class="my-1"><i class="bi bi-currency-exchange me-2"></i>可兌換服務項目</h2>
       </div>
     </div>
-    <div class="row border border-3 border-top-0 border-black" id="trade"style="background-color: rgba(126, 68, 2, 0.562); height: 650px; overflow-y: scroll;">
-        <a class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-danger link-underline link-underline-opacity-0 text-dark fs-1" href="trade-request.html">打掃</a>
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-success fs-1">照顧</div>
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-info fs-1">睡覺</div>
-        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-warning fs-1">整理</div>
+    <div class="row border border-3 border-top-0 border-black" id="trade"
+      style="background-color: rgba(126, 68, 2, 0.562); height: 650px; overflow-y: scroll;">
+      <div
+        class="col-12 col-md-4 bg-danger d-flex justify-content-center align-items-center border border-2 border-dark">
+        <a class="link-underline link-underline-opacity-0 text-dark fs-1" href="trade-request.html"
+          onclick="get_type(event)">打掃</a>
+      </div>
+      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-success fs-1">任務二</div>
+      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-info fs-1">任務三</div>
+      <div class="col-12 col-md-4 d-flex justify-content-center align-items-center bg-warning fs-1">任務四</div>
     </div>
     <div class="row d-flex justify-content-center border border-3 border-top-0 border-black">
       <a href="choice.html"
-        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 c_blue">
-        <p class="fs-3 d-flex justify-content-center my-auto text-light">返回</p>
+        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-primary">
+        <p class="fs-3 text-center my-auto text-light">返回</p>
       </a>
     </div>
   </div>

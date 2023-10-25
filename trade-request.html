@@ -21,11 +21,12 @@
   <script src="/static/js/set-page-info.js"></script>
   <script src="/static/js/init.js"></script>
   <script src="/static/js/getGroup.js"></script>
+  <script src="/static/js/image.js"></script>
   <title>交易所-要求</title>
 
-<body>
+<body onload="init()">
   <div class="container px-0 border border-3 border-bottom-0 border-black">
-    <nav class="navbar bg-dark" data-bs-theme="dark">
+    <nav class="navbar bg-dark bg-gradient" data-bs-theme="dark">
       <div class="container-fluid">
         <div class="col d-flex justify-content-start">
           <a class="navbar-brand mb-0 h1" href="index.html">
@@ -34,7 +35,7 @@
           </a>
         </div>
         <div class="col d-flex justify-content-center">
-          <p class="fs-4 mb-0 text-light">交易設定</p>
+          <p class="fs-2 mb-0 text-light">交易設定</p>
         </div>
         <div class="col d-flex justify-content-end">
           <div class="dropdown">
@@ -56,19 +57,92 @@
   <div class="container" style="background:rgba(157, 245, 182, 0.562);">
     <div class="row border border-3 border-top-0 border-black py-2">
       <div class="col-12 col-md-6 order-1 order-md-0">
-        <p class="fs-4 fw-bold" id="request">交易任務名稱</p>
-        <input class="fs-5 bg-secondary text-light" id="request_name"></input>
-        <p class="fs-4 fw-bold mt-5">交易時數</p>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control bg-secondary text-light" id="request_time">
-          <span class="input-group-text bg-secondary text-light">小時</span>
+        <div class="mb-3">
+          <label for="task_name" class="form-label fs-3 fw-bold">交易任務名稱</label>
+          <input type="text" class="form-control" id="task_name" value="打掃">
         </div>
-        <p class="fs-4 fw-bold mt-5">交易任務理念</p>
-        <textarea class="fs-5 bg-secondary text-light form-control" id="request_text" rows="4"></textarea>
+        <div class="col-4 mb-3">
+          <label for="token" class="form-label fs-3 fw-bold">交易時數</label>
+          <div class="input-group">
+            <input type="number" value="1" name="Time" min="1" max="12" step="1" class="form-control" id="token">
+            <span class="input-group-text">小時</span>
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="token" class="form-label fs-3 fw-bold">所需人數</label>
+          <div class="input-group">
+            <input type="number" value="1" name="Time" min="1" max="20" step="1" class="form-control" id="people">
+            <span class="input-group-text">人</span>
+          </div>
+        </div>
+        <div class="col-6 mb-3">
+          <label for="token" class="form-label fs-3 fw-bold">最低信用積分限制</label>
+          <div class="input-group">
+            <input type="number" value="1" name="Time" min="1" max="100" step="1" class="form-control" id="point">
+            <span class="input-group-text"></span>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="token" class="form-label fs-3 fw-bold">所需專長</label>
+          <div class="row row-gap-3">
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="行政支援" id="gridCheck1">
+              <label for="gridCheck1" class="form-label">1. 行政支援</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="課業輔導" id="gridCheck2">
+              <label for="gridCheck2" class="form-label">2. 課業輔導</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="社區服務" id="gridCheck3">
+              <label for="gridCheck3" class="form-label">3. 社區服務</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="生活扶助" id="gridCheck4">
+              <label for="gridCheck4" class="form-label">4. 生活扶助</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="電腦科技" id="gridCheck5">
+              <label for="gridCheck5" class="form-label">5. 電腦科技</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="環保教育" id="gridCheck6">
+              <label for="gridCheck6" class="form-label">6. 環保教育</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="藝術文化" id="gridCheck7">
+              <label for="gridCheck7" class="form-label">7. 藝術文化</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="健康醫療" id="gridCheck8">
+              <label for="gridCheck8" class="form-label">8. 健康醫療</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="權益倡導" id="gridCheck9">
+              <label for="gridCheck9" class="form-label">9. 權益倡導</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" value="國際交流" id="gridCheck10">
+              <label for="gridCheck10" class="form-label">10. 國際交流</label>
+            </div>
+            <div class="col-12 col-md-3 fs-5">
+              <input class="form-check-input" type="checkbox" id="otherCheck" onclick="checkBoxFn()">
+              <label for="otherCheck" class="form-label">11. 其他</label>
+            </div>
+            <div class="form-group col-12">
+              <textarea class="form-control" id="textArea" rows="6" style="display: none;"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="overview" class="form-label fs-3 fw-bold">交易任務理念</label>
+          <textarea class="form-control" id="overview" rows="3"></textarea>
+        </div>
       </div>
       <div class="col-12 col-md-6 order-0 order-md-1 d-flex justify-content-center align-items-center">
-        <div class="text-center">
-          <img src="https://picsum.photos/300/300?random=10" class="rounded" class="w-100">
+        <div class="border d-flex align-items-center justify-content-center position-relative" style="height: 120px;">
+          <img id="task_cover" src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
+          <a href="#" onclick="setImgToLS('task_cover');" class="stretched-link"></a>
         </div>
       </div>
     </div>
@@ -78,11 +152,13 @@
         <p class="fs-3 d-flex justify-content-center my-auto text-light">返回</p>
       </a>
       <button
-        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-danger">
-        <p class="fs-3 d-flex justify-content-center my-auto text-light" id="doneBtn">確認</p>
+        class="col-3 col-md-2 m-2 border border-3 border-black rounded-5 link-underline link-underline-opacity-0 btn btn-danger"
+        id="doneBtn">
+        <p class="fs-3 d-flex justify-content-center my-auto text-light">確認</p>
       </button>
     </div>
   </div>
+  <script src="/static/js/new_trade_request.js"></script>
 </body>
 
 </html>
